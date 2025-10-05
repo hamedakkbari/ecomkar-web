@@ -111,7 +111,7 @@ export const socialLinks = [
 export const commandPaletteActions = [
   {
     id: 'agent',
-    label: 'ایجنت معمار',
+    label: 'دموی ایجنت',
     description: 'مشاوره هوشمند و تحلیل کسب‌وکار',
     href: '/agent',
     icon: 'Bot',

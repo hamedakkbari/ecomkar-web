@@ -83,12 +83,14 @@ export default function Services() {
             const items = isHome
               ? servicesContent.items.filter(item => item.key !== 'sales_chatbot')
               : servicesContent.items;
-            return items;
-          }, [pathname])).map((service, index) => (
+            return { items, isHome };
+          }, [pathname])).items.map((service, index) => (
             <ServiceCard
               key={service.key}
               service={service}
               delay={index * 0.1}
+              ctaHref={(pathname === '/' ? '/consultation' : undefined)}
+              ctaText={(pathname === '/' ? 'درخواست مشاوره' : undefined)}
             />
           ))}
         </motion.div>

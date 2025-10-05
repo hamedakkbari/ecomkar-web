@@ -232,13 +232,13 @@ export default function ServiceDetailModal({ service, isOpen, onClose }: Service
             <div className="sticky bottom-0 bg-gray-900/95 backdrop-blur-sm border-t border-gray-800 p-6 rounded-b-2xl">
               <div className="flex gap-4">
                 <a
-                  href={(service.detail?.cta?.href) || "/contact"}
+                  href={(service.detail?.cta?.href) || "/consultation"}
                   onClick={handleCTAClick}
                   data-analytics="click_service_detail_contact"
                   data-prop={service.key}
                   className="flex-1 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors text-center"
                 >
-                  {(service.detail?.cta?.label) || "درخواست جلسه"}
+                  {(service.detail?.cta?.label) || "درخواست مشاوره"}
                 </a>
               </div>
             </div>

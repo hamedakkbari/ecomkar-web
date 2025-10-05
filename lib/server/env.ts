@@ -28,6 +28,7 @@ export interface ServerEnv {
   N8N_WEBHOOK_LEAD?: string;
   N8N_WEBHOOK_DEMO?: string;
   N8N_WEBHOOK_NEWSLETTER?: string;
+  N8N_WEBHOOK_AGENT?: string;
   
   // Payments
   ZARINPAL_MERCHANT_ID?: string;
@@ -159,6 +160,7 @@ function validateEnv(): ServerEnv {
     N8N_WEBHOOK_LEAD: process.env.N8N_WEBHOOK_LEAD,
     N8N_WEBHOOK_DEMO: process.env.N8N_WEBHOOK_DEMO,
     N8N_WEBHOOK_NEWSLETTER: process.env.N8N_WEBHOOK_NEWSLETTER,
+    N8N_WEBHOOK_AGENT: process.env.N8N_WEBHOOK_AGENT || "https://n8n.ecomkar.com/webhook/website-chatbot",
     
     // Payments
     ZARINPAL_MERCHANT_ID: process.env.ZARINPAL_MERCHANT_ID,

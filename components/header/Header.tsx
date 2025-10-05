@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { 
   Menu, 
   X, 
@@ -22,6 +23,8 @@ import Logo from './Logo';
 import { navigationItems, socialLinks } from './NavItem';
 
 export default function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
@@ -130,7 +133,7 @@ export default function Header() {
               <div className="flex items-center gap-4 shrink-0">
                 <Link href="/" aria-label="EcomKar" className="flex items-center gap-3">
                   <div className="relative shrink-0">
-                    <Logo className="!h-7 md:!h-8 !w-auto" />
+                    <Logo className="!h-12 md:!h-14 !w-auto" />
                     <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50" />
                   </div>
                   <div className="flex items-center gap-2">
@@ -151,7 +154,7 @@ export default function Header() {
                           className="text-xs font-medium"
                           style={{ color: 'var(--accent-green)' }}
                         >
-                          Agent: آنلاین
+                          دموی ایجنت
                         </span>
                       </div>
                     </div>

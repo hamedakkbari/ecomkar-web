@@ -53,7 +53,7 @@ export const servicesContent: ServicesContent = {
       priceFrom: "$3,000",
       sla: "2–4 هفته",
       outcome: "تا 70% کاهش زمان عملیات",
-      ctaHref: "/contact"
+      ctaHref: "/consultation"
     },
     {
       key: "agent_site",
@@ -65,7 +65,7 @@ export const servicesContent: ServicesContent = {
       priceFrom: "$1,500",
       sla: "1–2 هفته",
       outcome: "افزایش کانورژن ورودی تا 25%",
-      ctaHref: "/contact"
+      ctaHref: "/consultation"
     },
     {
       key: "sales_chatbot",
@@ -77,7 +77,7 @@ export const servicesContent: ServicesContent = {
       priceFrom: "$1,200",
       sla: "1–2 هفته",
       outcome: "افزایش نرخ پاسخ تا 40%",
-      ctaHref: "/contact"
+      ctaHref: "/consultation"
     },
     {
       key: "b2c_video_ai",
@@ -89,7 +89,7 @@ export const servicesContent: ServicesContent = {
       priceFrom: "$600",
       sla: "3–7 روز",
       outcome: "رشد ارگانیک و جذب لید",
-      ctaHref: "/contact"
+      ctaHref: "/consultation"
     }
   ],
   microCta: {

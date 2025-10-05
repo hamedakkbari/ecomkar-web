@@ -200,7 +200,7 @@ export default function AgentPageClient() {
                 {agentContent.page.title}
               </h1>
               <p 
-                className="text-xl max-w-3xl mx-auto leading-relaxed"
+                className="text-xl max-w-3xl mx-auto leading-relaxed text-center"
                 style={{ color: 'var(--text-secondary)' }}
               >
                 {agentContent.page.lead}

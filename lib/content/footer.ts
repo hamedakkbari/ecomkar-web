@@ -101,7 +101,7 @@ export const footerContent: FooterContent = {
   },
   
   bottomBar: {
-    copyright: "© EcomKar — همهٔ حقوق محفوظ است."
+    copyright: "© 2025 EcomKar, Inc"
   },
   extras: {
     newsletter: {

@@ -19,9 +19,11 @@ import { ServiceItem } from '../../lib/content/services';
 interface ServiceCardProps {
   service: ServiceItem;
   delay?: number;
+  ctaHref?: string;
+  ctaText?: string;
 }
 
-export default function ServiceCard({ service, delay = 0 }: ServiceCardProps) {
+export default function ServiceCard({ service, delay = 0, ctaHref, ctaText }: ServiceCardProps) {
   // Dynamic icon import from lucide-react
   const IconComponent = LucideIcons[service.icon as keyof typeof LucideIcons] as LucideIcon;
 
@@ -182,14 +184,14 @@ export default function ServiceCard({ service, delay = 0 }: ServiceCardProps) {
 
           {/* CTA */}
           <div className="pt-2">
-            <Link
-              href={service.ctaHref}
+          <Link
+              href={ctaHref || service.ctaHref}
               className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 font-medium rounded-xl transition-all duration-200 shadow-lg btn-primary"
               data-analytics="click_service_cta"
               data-prop={service.key}
-              aria-label={`درخواست جلسه برای ${service.title}`}
+              aria-label={`${ctaText ? ctaText : 'درخواست مشاوره'} برای ${service.title}`}
             >
-              <span>درخواست جلسه</span>
+              <span>{ctaText || 'درخواست مشاوره'}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>

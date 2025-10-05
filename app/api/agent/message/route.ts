@@ -145,7 +145,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     // Send to webhook or mock
     const env = getServerEnv();
-    const webhookUrl = env.N8N_WEBHOOK_AGENT;
+    const webhookUrl = env.N8N_WEBHOOK_AGENT || "https://n8n.ecomkar.com/webhook/website-chatbot";
     
     let responseData: ChatMessageResponse;
     
