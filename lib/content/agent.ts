@@ -61,7 +61,7 @@ export default {
   },
   n8n: {
     intakeWebhook: "",
-    messageWebhook: ""
+    messageWebhook: process.env.NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK || ""
   },
   intake: {
     heading: "اطلاعات کسب‌وکار",

@@ -93,26 +93,27 @@ export default function AgentPageClient() {
 
     try {
       const webhook = agentContent.n8n?.messageWebhook;
-      const response = await fetch(webhook && webhook.length > 0 ? webhook : "/api/agent/message", {
+      const targetUrl = webhook && webhook.length > 0 ? webhook : "/api/agent/message";
+      const response = await fetch(targetUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "omit",
         body: JSON.stringify({
           session_id: sessionId,
-          message,
-          hp_token: ""
+          message
         }),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
-      if (data.ok) {
+      if (response.ok) {
         // Add assistant message
         const assistantMessage: Message = {
           id: Date.now().toString(),
           role: "assistant",
-          content: data.reply,
+          content: data.reply || data.message || "پاسخ دریافت شد.",
           timestamp: new Date().toISOString()
         };
         
@@ -127,9 +128,9 @@ export default function AgentPageClient() {
           setErrors(data.fields);
         } else {
           setErrors({ 
-            general: data.error === "POTENTIAL_SPAM" 
-              ? "درخواست شما به عنوان اسپم شناسایی شد." 
-              : "خطا در ارسال پیام. لطفاً دوباره تلاش کنید." 
+            general: typeof data.error === 'string' && data.error.length > 0
+              ? data.error
+              : `خطا در ارسال پیام (${response.status}). لطفاً دوباره تلاش کنید.`
           });
         }
       }

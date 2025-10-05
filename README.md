@@ -95,6 +95,15 @@ See [env.example](env.example) for all available environment variables.
 - `N8N_WEBHOOK_CONTACT` - Contact form webhook
 - `N8N_WEBHOOK_LEAD` - Lead form webhook
 
+## Configuration
+
+Set the following environment variables:
+
+- NEXT_PUBLIC_SITE_URL: Canonical site URL used for SEO/meta/links. Example: https://ecomkar.com
+- NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK: Direct POST endpoint for chatbot messages. Example: https://n8n.ecomkar.com/webhook/website-chatbot
+
+For local development, add them to `.env.local`. For production, configure them in your hosting platform.
+
 ## API Endpoints
 
 - `GET /api/health` - System health check

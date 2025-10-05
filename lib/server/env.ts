@@ -15,6 +15,7 @@ export type LogLevel = "info" | "warn" | "error";
 export interface ServerEnv {
   // App Configuration
   NEXT_PUBLIC_SITE_URL: string;
+  NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK?: string;
   NODE_ENV: "development" | "production" | "test";
   
   // Analytics
@@ -28,7 +29,6 @@ export interface ServerEnv {
   N8N_WEBHOOK_LEAD?: string;
   N8N_WEBHOOK_DEMO?: string;
   N8N_WEBHOOK_NEWSLETTER?: string;
-  N8N_WEBHOOK_AGENT?: string;
   
   // Payments
   ZARINPAL_MERCHANT_ID?: string;
@@ -97,6 +97,12 @@ function validateEnv(): ServerEnv {
     errors.push("NEXT_PUBLIC_SITE_URL must be a valid URL");
   }
 
+  // Public Chatbot Webhook (optional; required for external chatbot)
+  const chatbotWebhook = process.env.NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK;
+  if (chatbotWebhook && !isValidUrl(chatbotWebhook)) {
+    errors.push("NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK must be a valid URL");
+  }
+
   const nodeEnv = process.env.NODE_ENV || "development";
   if (!isValidEnum(nodeEnv, ["development", "production", "test"])) {
     warnings.push("NODE_ENV should be development, production, or test");
@@ -147,6 +153,7 @@ function validateEnv(): ServerEnv {
   return {
     // App Configuration
     NEXT_PUBLIC_SITE_URL: siteUrl || "https://localhost:3000",
+    NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK: chatbotWebhook,
     NODE_ENV: nodeEnv as "development" | "production" | "test",
     
     // Analytics
@@ -160,7 +167,6 @@ function validateEnv(): ServerEnv {
     N8N_WEBHOOK_LEAD: process.env.N8N_WEBHOOK_LEAD,
     N8N_WEBHOOK_DEMO: process.env.N8N_WEBHOOK_DEMO,
     N8N_WEBHOOK_NEWSLETTER: process.env.N8N_WEBHOOK_NEWSLETTER,
-    N8N_WEBHOOK_AGENT: process.env.N8N_WEBHOOK_AGENT || "https://n8n.ecomkar.com/webhook/website-chatbot",
     
     // Payments
     ZARINPAL_MERCHANT_ID: process.env.ZARINPAL_MERCHANT_ID,
