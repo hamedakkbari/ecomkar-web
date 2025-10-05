@@ -1,0 +1,315 @@
+/* Hero Grid Pattern */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 0;
+}
+
+/* Magnetic CTA Effect */
+.magnetic-cta {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.magnetic-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Desktop-only magnetic effect */
+@media (pointer: fine) {
+  .magnetic-cta {
+    cursor: pointer;
+  }
+}
+
+@media (pointer: coarse) {
+  .magnetic-cta {
+    transform: none !important;
+  }
+}
+
+/* Typing animation */
+.typing-cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Video overlay effects */
+.video-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+/* Neon glow for status indicators */
+.status-glow {
+  box-shadow: 
+    0 0 10px rgba(34, 197, 94, 0.3),
+    0 0 20px rgba(34, 197, 94, 0.2),
+    0 0 30px rgba(34, 197, 94, 0.1);
+}
+
+/* Gradient text animation */
+.gradient-text {
+  background: linear-gradient(
+    45deg,
+    #00E5FF,
+    #7A5CFF,
+    #00E5FF,
+    #7A5CFF
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* KPI cards hover effect */
+.kpi-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(0, 229, 255, 0.1);
+}
+
+/* Trust logos fade effect */
+.trust-logo {
+  transition: all 0.3s ease;
+  filter: grayscale(100%) opacity(0.6);
+}
+
+.trust-logo:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
+}
+
+/* Agent dock animations */
+.agent-dock {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.agent-dock-item {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agent-dock-item:hover {
+  transform: translateX(-4px);
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Modal backdrop blur */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Form input focus effects */
+.form-input {
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  box-shadow: 
+    0 0 0 2px rgba(59, 130, 246, 0.2),
+    0 0 10px rgba(59, 130, 246, 0.1);
+}
+
+/* Loading spinner */
+.loading-spinner {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Scroll hint bounce */
+.scroll-hint {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* RTL specific adjustments */
+[dir="rtl"] .agent-dock-item:hover {
+  transform: translateX(4px);
+}
+
+[dir="rtl"] .form-input {
+  text-align: right;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .bg-grid-pattern {
+    background-size: 15px 15px;
+  }
+  
+  .kpi-card:hover {
+    transform: none;
+  }
+  
+  .trust-logo:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px);
+  }
+  
+  .status-glow {
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .magnetic-cta,
+  .kpi-card,
+  .agent-dock-item,
+  .trust-logo,
+  .gradient-text,
+  .typing-cursor,
+  .loading-spinner,
+  .scroll-hint {
+    animation: none;
+    transition: none;
+  }
+  
+  .magnetic-cta:hover {
+    transform: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.focus-visible {
+  outline: 2px solid #00E5FF;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Video poster optimization */
+video {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Safe area adjustments for mobile */
+@supports (padding: max(0px)) {
+  .hero-content {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Starry sky background */
+body {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+
+.night {
+  position: fixed;
+  inset: 0;
+  transform: rotateZ(45deg);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.shooting_star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(-45deg, rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+  border-radius: 999px;
+  filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
+  animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+}
+
+.shooting_star::before,
+.shooting_star::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 0;
+  height: 2px;
+  background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+  border-radius: 100%;
+  animation: shining 3000ms ease-in-out infinite;
+}
+
+.shooting_star::before { transform: translateX(50%) rotateZ(45deg); }
+.shooting_star::after { transform: translateX(50%) rotateZ(-45deg); }
+
+/* Predefined scatter positions */
+.shooting_star:nth-child(1) { top: calc(50% - 120px); left: calc(50% - 40px); animation-delay: 120ms; }
+.shooting_star:nth-child(2) { top: calc(50% - 60px); left: calc(50% - 200px); animation-delay: 560ms; }
+.shooting_star:nth-child(3) { top: calc(50% - 180px); left: calc(50% - 120px); animation-delay: 980ms; }
+.shooting_star:nth-child(4) { top: calc(50% - 10px); left: calc(50% - 260px); animation-delay: 1400ms; }
+.shooting_star:nth-child(5) { top: calc(50% - 90px); left: calc(50% - 20px); animation-delay: 1730ms; }
+.shooting_star:nth-child(6) { top: calc(50% - 140px); left: calc(50% - 140px); animation-delay: 2100ms; }
+.shooting_star:nth-child(7) { top: calc(50% - 30px); left: calc(50% - 90px); animation-delay: 2450ms; }
+.shooting_star:nth-child(8) { top: calc(50% - 160px); left: calc(50% - 220px); animation-delay: 2780ms; }
+.shooting_star:nth-child(9) { top: calc(50% - 70px); left: calc(50% - 170px); animation-delay: 3120ms; }
+.shooting_star:nth-child(10) { top: calc(50% - 200px); left: calc(50% - 260px); animation-delay: 3460ms; }
+.shooting_star:nth-child(11) { top: calc(50% - 40px); left: calc(50% - 240px); animation-delay: 3820ms; }
+.shooting_star:nth-child(12) { top: calc(50% - 110px); left: calc(50% - 180px); animation-delay: 4180ms; }
+.shooting_star:nth-child(13) { top: calc(50% - 150px); left: calc(50% - 80px); animation-delay: 4510ms; }
+.shooting_star:nth-child(14) { top: calc(50% - 20px); left: calc(50% - 130px); animation-delay: 4860ms; }
+.shooting_star:nth-child(15) { top: calc(50% - 170px); left: calc(50% - 30px); animation-delay: 5200ms; }
+.shooting_star:nth-child(16) { top: calc(50% - 100px); left: calc(50% - 210px); animation-delay: 5520ms; }
+.shooting_star:nth-child(17) { top: calc(50% - 130px); left: calc(50% - 160px); animation-delay: 5860ms; }
+.shooting_star:nth-child(18) { top: calc(50% - 190px); left: calc(50% - 100px); animation-delay: 6210ms; }
+.shooting_star:nth-child(19) { top: calc(50% - 50px); left: calc(50% - 60px); animation-delay: 6540ms; }
+.shooting_star:nth-child(20) { top: calc(50% - 80px); left: calc(50% - 240px); animation-delay: 6880ms; }
+
+@keyframes tail { 0% { width: 0; } 30% { width: 100px; } 100% { width: 0; } }
+@keyframes shining { 0% { width: 0; } 50% { width: 30px; } 100% { width: 0; } }
+@keyframes shooting { 0% { transform: translateX(0); } 100% { transform: translateX(300px); } }

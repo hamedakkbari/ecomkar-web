@@ -1,0 +1,100 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+
+export default function HeaderSpacer() {
+  const [height, setHeight] = useState(0);
+  const headerRef = useRef<HTMLElement | null>(null);
+  const announcementRef = useRef<HTMLElement | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Find header and announcement elements
+    const findElements = () => {
+      headerRef.current = document.querySelector('header');
+      announcementRef.current = document.querySelector('[data-announcement-bar]');
+    };
+
+    const updateHeight = () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
+      timeoutRef.current = setTimeout(() => {
+        let totalHeight = 0;
+
+        // Measure header height
+        if (headerRef.current) {
+          const headerHeight = headerRef.current.offsetHeight;
+          totalHeight += headerHeight;
+          console.log(`Header height: ${headerHeight}px`);
+        }
+
+        // Measure announcement bar height if visible and rendered
+        if (announcementRef.current) {
+          const announcementHeight = announcementRef.current.offsetHeight;
+          if (announcementHeight > 0) {
+            totalHeight += announcementHeight;
+            console.log(`Announcement height: ${announcementHeight}px`);
+          }
+        }
+
+        console.log(`Total spacer height: ${totalHeight}px`);
+        setHeight(totalHeight);
+      }, 50); // 50ms debounce
+    };
+
+    // Initial setup with delay to ensure elements are rendered
+    const initialSetup = () => {
+      findElements();
+      // Small delay to ensure DOM is fully rendered
+      setTimeout(updateHeight, 100);
+    };
+    
+    initialSetup();
+
+    // Create ResizeObserver for header
+    const headerObserver = new ResizeObserver(() => {
+      requestAnimationFrame(updateHeight);
+    });
+
+    // Create ResizeObserver for announcement bar
+    const announcementObserver = new ResizeObserver(() => {
+      requestAnimationFrame(updateHeight);
+    });
+
+    // Observe elements when they exist
+    if (headerRef.current) {
+      headerObserver.observe(headerRef.current);
+    }
+    if (announcementRef.current) {
+      announcementObserver.observe(announcementRef.current);
+    }
+
+    // Listen for scroll to handle shrink states
+    const handleScroll = () => {
+      requestAnimationFrame(updateHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      headerObserver.disconnect();
+      announcementObserver.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, []);
+
+  return (
+    <div 
+      style={{ height: `${height}px` }}
+      aria-hidden="true"
+      className="w-full"
+    />
+  );
+}

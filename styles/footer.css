@@ -1,0 +1,432 @@
+/**
+ * Footer-specific styles for EcomKar
+ * Features: Glass morphism, RTL support, gradient top border
+ * 
+ * Design tokens:
+ * - Background: #0B0F14
+ * - Text: #E6F1FF (primary), #9FB3C8 (secondary)
+ * - Neon: #00E5FF (blue), #7A5CFF (purple)
+ * - Glass: backdrop-blur-md, border white/10
+ */
+
+/* Footer main container */
+.footer-main {
+  background: rgba(11, 15, 20, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 2px solid transparent;
+  background-image: linear-gradient(rgba(11, 15, 20, 0.8), rgba(11, 15, 20, 0.8)), 
+                    linear-gradient(90deg, #00E5FF, #7A5CFF);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+/* Footer bottom bar */
+.footer-bottom {
+  background: rgba(11, 15, 20, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Footer brand section */
+.footer-brand {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-brand:hover .footer-logo {
+  transform: scale(1.05);
+}
+
+.footer-logo {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Footer links */
+.footer-link {
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #00E5FF, #7A5CFF);
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-link:hover {
+  color: #00E5FF;
+  transform: translateX(2px);
+}
+
+/* RTL link hover adjustments */
+[dir="rtl"] .footer-link:hover {
+  transform: translateX(-2px);
+}
+
+[dir="rtl"] .footer-link::after {
+  right: auto;
+  left: 0;
+}
+
+/* Footer contact section */
+.footer-contact {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-contact:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Footer badges */
+.footer-badge {
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-badge:hover {
+  background: rgba(0, 229, 255, 0.2);
+  border-color: rgba(0, 229, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.1);
+}
+
+/* Footer controls */
+.footer-control {
+  background: rgba(11, 15, 20, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.footer-control:hover {
+  background: rgba(11, 15, 20, 0.9);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-control:focus {
+  border-color: #00E5FF;
+  box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.2);
+}
+
+/* Back to top button */
+.footer-back-to-top {
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-back-to-top:hover {
+  background: rgba(0, 229, 255, 0.2);
+  border-color: rgba(0, 229, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.2);
+}
+
+.footer-back-to-top:active {
+  transform: translateY(0);
+}
+
+/* Footer grid responsive adjustments */
+.footer-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+  }
+}
+
+/* Footer contact grid */
+.footer-contact-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .footer-contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Footer bottom bar responsive */
+.footer-bottom-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .footer-bottom-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.footer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* RTL footer adjustments */
+[dir="rtl"] .footer-grid {
+  text-align: right;
+}
+
+[dir="rtl"] .footer-contact-grid {
+  text-align: right;
+}
+
+[dir="rtl"] .footer-bottom-content {
+  text-align: right;
+}
+
+/* Footer animations */
+.footer-fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer link group animations */
+.footer-link-group {
+  animation: slideInRight 0.4s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* RTL link group animations */
+[dir="rtl"] .footer-link-group {
+  animation: slideInLeft 0.4s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Footer focus styles */
+.footer-focus {
+  outline: 2px solid #00E5FF;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Footer high contrast mode */
+@media (prefers-contrast: high) {
+  .footer-main {
+    background: rgba(11, 15, 20, 0.95);
+    border-top: 3px solid #00E5FF;
+  }
+  
+  .footer-bottom {
+    background: rgba(11, 15, 20, 0.98);
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .footer-link:hover {
+    color: #00E5FF;
+    text-decoration: underline;
+  }
+  
+  .footer-badge {
+    border: 2px solid #00E5FF;
+  }
+  
+  .footer-control {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .footer-back-to-top {
+    border: 2px solid #00E5FF;
+  }
+}
+
+/* Footer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .footer-brand,
+  .footer-logo,
+  .footer-link,
+  .footer-badge,
+  .footer-control,
+  .footer-back-to-top {
+    transition: none;
+  }
+  
+  .footer-link:hover,
+  .footer-badge:hover,
+  .footer-back-to-top:hover {
+    transform: none;
+  }
+  
+  .footer-fade-in,
+  .footer-link-group {
+    animation: none;
+  }
+}
+
+/* Footer print styles */
+@media print {
+  .footer-main,
+  .footer-bottom {
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+  
+  .footer-link::after {
+    display: none;
+  }
+  
+  .footer-badge {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    color: #374151;
+  }
+  
+  .footer-control,
+  .footer-back-to-top {
+    display: none;
+  }
+  
+  .footer-contact {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+  }
+}
+
+/* Footer mobile optimizations */
+@media (max-width: 768px) {
+  .footer-main {
+    padding: 2rem 1rem;
+  }
+  
+  .footer-bottom {
+    padding: 1.5rem 1rem;
+  }
+  
+  .footer-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .footer-control {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .footer-back-to-top {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Footer accessibility improvements */
+.footer-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Footer skip link */
+.footer-skip-link {
+  position: absolute;
+  top: -40px;
+  right: 6px;
+  background: #00E5FF;
+  color: #0B0F14;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.footer-skip-link:focus {
+  top: 6px;
+}
+
+/* Footer loading states */
+.footer-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.footer-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #00E5FF;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

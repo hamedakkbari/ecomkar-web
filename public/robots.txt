@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ecomkar.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow important pages
+Allow: /services
+Allow: /agent
+Allow: /course
+Allow: /about
+Allow: /contact
+Allow: /checkout
+Allow: /thank-you
+Allow: /privacy
+Allow: /terms
+
+

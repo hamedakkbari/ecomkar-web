@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EcomKar - AI Agents & Automation Platform
 
-## Getting Started
+A modern Next.js 14 platform for AI agents, automation, and business growth. Built with TypeScript, Tailwind CSS, and RTL support.
 
-First, run the development server:
+## Quick Start
 
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install with pnpm (recommended)
+pnpm install
+
+# Or with npm
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Environment Setup
+```bash
+# Copy environment template
+cp env.example .env.local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Edit with your values
+nano .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Run Development Server
+```bash
+pnpm dev
+# or
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Health Check
+```bash
+# Check system status
+curl http://localhost:3000/api/health
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Complete Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For production deployment and full configuration, see our comprehensive [Setup Guide](/docs/setup.md).
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 🚀 **Next.js 14** with App Router
+- 🎨 **Tailwind CSS** with RTL support
+- 🔒 **Security-first** API design
+- 📊 **Analytics** (Plausible/GA4)
+- 📧 **Email** (Mailgun/Resend)
+- 💳 **Payments** (Zarinpal/Stripe)
+- 🤖 **n8n Integration**
+- 🌐 **SEO Optimized**
+- 📱 **PWA Ready**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Database**: Supabase (Phase 2)
+- **Analytics**: Plausible/Google Analytics
+- **Email**: Mailgun/Resend
+- **Payments**: Zarinpal/Stripe
+- **Automation**: n8n
+
+## Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Run development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
+
+# Run linting
+pnpm lint
+
+# Run type checking
+pnpm type-check
+```
+
+## Environment Variables
+
+See [env.example](env.example) for all available environment variables.
+
+**Critical variables:**
+- `NEXT_PUBLIC_SITE_URL` - Your domain
+- `N8N_WEBHOOK_CONTACT` - Contact form webhook
+- `N8N_WEBHOOK_LEAD` - Lead form webhook
+
+## API Endpoints
+
+- `GET /api/health` - System health check
+- `POST /api/contact` - Contact form submission
+- `POST /api/lead` - Lead form submission
+
+## Documentation
+
+- [Setup Guide](/docs/setup.md) - Complete setup instructions
+- [API Documentation](/docs/api.md) - API reference
+- [Deployment Guide](/docs/deployment.md) - Production deployment
+
+## Support
+
+- **Health Check**: `/api/health` for system status
+- **Issues**: Create GitHub issue with health check output
+- **Documentation**: Check `/docs/setup.md` first
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.

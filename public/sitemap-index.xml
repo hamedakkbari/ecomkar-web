@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main Sitemap -->
+  <sitemap>
+    <loc>https://ecomkar.com/sitemap.xml</loc>
+    <lastmod>2024-12-19</lastmod>
+  </sitemap>
+
+  <!-- Service Pages Sitemap -->
+  <sitemap>
+    <loc>https://ecomkar.com/sitemap-services.xml</loc>
+    <lastmod>2024-12-19</lastmod>
+  </sitemap>
+
+  <!-- Legal Pages Sitemap -->
+  <sitemap>
+    <loc>https://ecomkar.com/sitemap-legal.xml</loc>
+    <lastmod>2024-12-19</lastmod>
+  </sitemap>
+
+</sitemapindex>
+
+
