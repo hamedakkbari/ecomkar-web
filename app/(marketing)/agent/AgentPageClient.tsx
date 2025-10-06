@@ -37,15 +37,24 @@ export default function AgentPageClient() {
 
     try {
       const webhook = agentContent.n8n?.intakeWebhook;
-      const response = await fetch(webhook && webhook.length > 0 ? webhook : "/api/agent/new", {
+      const targetUrl = webhook && webhook.length > 0 ? webhook : "/api/agent/new";
+      const response = await fetch(targetUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        credentials: "omit",
+        body: JSON.stringify({
+          ...formData,
+          hp_token: "",
+          page: "/agent",
+          site_url: process.env.NEXT_PUBLIC_SITE_URL,
+          user_agent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
+          referer: typeof document !== "undefined" ? document.referrer : undefined
+        }),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
       if (data.ok) {
         setSessionId(data.session_id);
@@ -102,7 +111,12 @@ export default function AgentPageClient() {
         credentials: "omit",
         body: JSON.stringify({
           session_id: sessionId,
-          message
+          message,
+          hp_token: "",
+          page: "/agent",
+          site_url: process.env.NEXT_PUBLIC_SITE_URL,
+          user_agent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
+          referer: typeof document !== "undefined" ? document.referrer : undefined
         }),
       });
 

@@ -1,29 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import agentContent from "@/lib/content/agent";
 import { motion } from "framer-motion";
 
 export default function ChatbotPage() {
   const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([]);
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [isSending, setIsSending] = useState(false);
 
   const handleSend = async () => {
     const value = input.trim();
     if (!value || isSending) return;
-    setMessages((prev) => [...prev, { role: "user", content: value }]);
     setInput("");
     setIsSending(true);
 
     try {
-      const res = await fetch("https://n8n.ecomkar.com/webhook/website-chatbot", {
+      const isFirst = !sessionId;
+      const targetUrl = isFirst ? (agentContent.n8n?.intakeWebhook || "/api/agent/new") : (agentContent.n8n?.messageWebhook || "/api/agent/message");
+      const payload: any = isFirst ? { message: value, hp_token: "", page: "/chatbot", site_url: process.env.NEXT_PUBLIC_SITE_URL, user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : undefined, referer: typeof document !== 'undefined' ? document.referrer : undefined } : { session_id: sessionId, message: value, hp_token: "", page: "/chatbot", site_url: process.env.NEXT_PUBLIC_SITE_URL, user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : undefined, referer: typeof document !== 'undefined' ? document.referrer : undefined };
+      const res = await fetch(targetUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: value }),
+        credentials: "omit",
+        body: JSON.stringify(payload),
       });
       const data = await res.json().catch(() => ({}));
-      const reply = data?.reply || data?.message || "پاسخ دریافت شد.";
-      setMessages((prev) => [...prev, { role: "assistant", content: String(reply) }]);
+
+      if (res.ok) {
+        setMessages((prev) => [...prev, { role: "user", content: value }]);
+        if (isFirst && typeof data.session_id === 'string' && data.session_id.length > 0) {
+          setSessionId(data.session_id);
+        }
+        const reply = data?.reply || data?.message || "پاسخ دریافت شد.";
+        setMessages((prev) => [...prev, { role: "assistant", content: String(reply) }]);
+      } else {
+        setMessages((prev) => [...prev, { role: "assistant", content: `خطا در ارسال پیام (${res.status})` }]);
+      }
     } catch (e) {
       setMessages((prev) => [...prev, { role: "assistant", content: "خطا در ارتباط. لطفاً دوباره تلاش کنید." }]);
     } finally {

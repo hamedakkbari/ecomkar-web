@@ -54,14 +54,14 @@ export interface AgentContent {
   };
 }
 
-export default {
+export const agentContent = {
   page: {
     title: "ایجنت معمار EcomKar",
     lead: "اطلاعات کسب‌وکارت را وارد کن تا با هوش مصنوعی تحلیل کاملی از فرصت‌های بهبود و اتوماسیون دریافت کنی."
   },
   n8n: {
-    intakeWebhook: "",
-    messageWebhook: process.env.NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK || ""
+    intakeWebhook: process.env.NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK,
+    messageWebhook: process.env.NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK
   },
   intake: {
     heading: "اطلاعات کسب‌وکار",
@@ -142,3 +142,5 @@ export default {
     image: "/og.png"
   }
 } as AgentContent;
+
+export default agentContent;

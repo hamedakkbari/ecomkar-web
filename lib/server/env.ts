@@ -99,7 +99,9 @@ function validateEnv(): ServerEnv {
 
   // Public Chatbot Webhook (optional; required for external chatbot)
   const chatbotWebhook = process.env.NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK;
-  if (chatbotWebhook && !isValidUrl(chatbotWebhook)) {
+  if (!chatbotWebhook) {
+    warnings.push("NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK is not set; falling back to internal API routes");
+  } else if (!isValidUrl(chatbotWebhook)) {
     errors.push("NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK must be a valid URL");
   }
 
