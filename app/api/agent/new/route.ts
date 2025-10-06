@@ -109,6 +109,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       id: sessionId,
       intake: {
         website_url: body.website_url,
+        instagram_url: body.instagram_url,
         business_type: body.business_type,
         primary_goal: body.primary_goal,
         channels: body.channels,

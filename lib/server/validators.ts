@@ -222,7 +222,8 @@ export function validateDemoAnalyzeInput(data: any): ValidationResult {
 
 // Agent session validation
 export interface NewSessionInput {
-  website_url: string;
+  website_url?: string;
+  instagram_url?: string;
   business_type: string;
   primary_goal: string;
   channels: string[];
@@ -243,11 +244,18 @@ const AGENT_BUDGET_OPTIONS = ["کمتر از ۵ میلیون", "۵-۱۵ میلی
 export function validateNewSessionInput(data: any): ValidationResult {
   const errors: ValidationError[] = [];
 
-  // Website URL validation
-  if (!data.website_url || typeof data.website_url !== "string") {
-    errors.push({ field: "website_url", message: "آدرس وب‌سایت الزامی است." });
-  } else if (!isValidUrl(data.website_url)) {
-    errors.push({ field: "website_url", message: "آدرس وب‌سایت یا دامین نامعتبر است. مثال: example.com" });
+  // Website URL validation (optional now)
+  if (data.website_url && typeof data.website_url === "string") {
+    if (!isValidUrl(data.website_url)) {
+      errors.push({ field: "website_url", message: "آدرس وب‌سایت یا دامین نامعتبر است. مثال: example.com" });
+    }
+  }
+
+  // Instagram URL validation (optional)
+  if (data.instagram_url && typeof data.instagram_url === "string") {
+    if (!isValidUrl(data.instagram_url)) {
+      errors.push({ field: "instagram_url", message: "آدرس اینستاگرام نامعتبر است." });
+    }
   }
 
   // Business type validation
@@ -280,7 +288,7 @@ export function validateNewSessionInput(data: any): ValidationResult {
     errors.push({ field: "budget", message: "بودجه نامعتبر است." });
   }
 
-  // Phone validation
+  // Phone validation (required)
   if (!data.phone || typeof data.phone !== "string") {
     errors.push({ field: "phone", message: "شماره تماس الزامی است." });
   } else {
@@ -290,7 +298,7 @@ export function validateNewSessionInput(data: any): ValidationResult {
     }
   }
 
-  // Email validation
+  // Email validation (required)
   if (!data.email || typeof data.email !== "string" || !EMAIL_REGEX.test(data.email)) {
     errors.push({ field: "email", message: "فرمت ایمیل نامعتبر است." });
   }

@@ -214,12 +214,14 @@ export default function AgentPageClient() {
               >
                 {agentContent.page.title}
               </h1>
-              <p 
-                className="text-xl max-w-3xl mx-auto leading-relaxed text-center"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                {agentContent.page.lead}
-              </p>
+              <div className="w-full flex justify-center">
+                <p 
+                  className="text-xl leading-relaxed text-center"
+                  style={{ color: 'var(--text-secondary)', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}
+                >
+                  {agentContent.page.lead}
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>

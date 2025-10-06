@@ -94,9 +94,9 @@ export const footerContent: FooterContent = {
   social: {
     title: "شبکه‌ها",
     items: [
-      { key: "instagram", label: "Instagram", href: "https://instagram.com/ecomkar" },
-      { key: "telegram", label: "Telegram", href: "https://t.me/ecomkar" },
-      { key: "youtube", label: "YouTube", href: "https://youtube.com/@ecomkar" }
+      { key: "instagram", label: "اینستاگرام", href: "https://instagram.com/ecomkar" },
+      { key: "telegram", label: "تلگرام", href: "https://t.me/ecomkar" },
+      { key: "youtube", label: "یوتیوب", href: "https://youtube.com/@ecomkar" }
     ]
   },
   

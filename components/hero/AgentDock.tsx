@@ -6,8 +6,7 @@ import {
   Zap, 
   Bot,
   Minimize2,
-  MessageCircle,
-  MessageSquare
+  MessageCircle
 } from 'lucide-react';
 // Modal removed since only chat action remains
 
@@ -35,13 +34,6 @@ export default function AgentDock({}: AgentDockProps) {
       icon: MessageCircle,
       description: 'گفتگو در WhatsApp',
       analytics: 'open_whatsapp_chat'
-    },
-    {
-      id: 'chatbot',
-      label: 'گفتگو',
-      icon: MessageSquare,
-      description: 'صفحه گفتگوی چت‌بات',
-      analytics: 'open_chatbot_page'
     }
   ];
 
@@ -50,10 +42,6 @@ export default function AgentDock({}: AgentDockProps) {
     if (actionId === 'whatsapp') {
       const waUrl = `https://wa.me/${whatsappPhone.replace(/[^\d+]/g, '')}`;
       window.open(waUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-    if (actionId === 'chatbot') {
-      window.location.href = '/chatbot';
       return;
     }
     window.location.href = '/agent';

@@ -10,7 +10,8 @@ export interface Session {
 }
 
 export interface IntakeData {
-  website_url: string;
+  website_url?: string;
+  instagram_url?: string;
   business_type: string;
   primary_goal: string;
   channels: string[];
@@ -63,7 +64,8 @@ export interface DayPlan {
 }
 
 export interface NewSessionRequest {
-  website_url: string;
+  website_url?: string;
+  instagram_url?: string;
   business_type: string;
   primary_goal: string;
   channels: string[];

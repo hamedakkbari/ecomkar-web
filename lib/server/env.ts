@@ -25,6 +25,7 @@ export interface ServerEnv {
   CLARITY_ID?: string;
   
   // n8n Webhooks
+  N8N_WEBHOOK_AGENT?: string;
   N8N_WEBHOOK_CONTACT?: string;
   N8N_WEBHOOK_LEAD?: string;
   N8N_WEBHOOK_DEMO?: string;
@@ -105,6 +106,12 @@ function validateEnv(): ServerEnv {
     errors.push("NEXT_PUBLIC_N8N_CHATBOT_WEBHOOK must be a valid URL");
   }
 
+  // Private Agent Webhook (server-side)
+  const agentWebhook = process.env.N8N_WEBHOOK_AGENT;
+  if (agentWebhook && !isValidUrl(agentWebhook)) {
+    errors.push("N8N_WEBHOOK_AGENT must be a valid URL");
+  }
+
   const nodeEnv = process.env.NODE_ENV || "development";
   if (!isValidEnum(nodeEnv, ["development", "production", "test"])) {
     warnings.push("NODE_ENV should be development, production, or test");
@@ -165,6 +172,7 @@ function validateEnv(): ServerEnv {
     CLARITY_ID: process.env.CLARITY_ID,
     
     // n8n Webhooks
+    N8N_WEBHOOK_AGENT: process.env.N8N_WEBHOOK_AGENT,
     N8N_WEBHOOK_CONTACT: process.env.N8N_WEBHOOK_CONTACT,
     N8N_WEBHOOK_LEAD: process.env.N8N_WEBHOOK_LEAD,
     N8N_WEBHOOK_DEMO: process.env.N8N_WEBHOOK_DEMO,

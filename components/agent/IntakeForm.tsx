@@ -8,6 +8,7 @@ interface IntakeFormProps {
   content: AgentContent;
   onSubmit: (data: {
     website_url: string;
+    instagram_url?: string;
     business_type: string;
     primary_goal: string;
     channels: string[];
@@ -25,6 +26,7 @@ interface IntakeFormProps {
 export default function IntakeForm({ content, onSubmit, isLoading, errors }: IntakeFormProps) {
   const [formData, setFormData] = useState({
     website_url: "",
+    instagram_url: "",
     business_type: "",
     primary_goal: "",
     channels: [] as string[],
@@ -46,14 +48,15 @@ export default function IntakeForm({ content, onSubmit, isLoading, errors }: Int
       return `https://${trimmed}`;
     };
     
-    // Client-side validation
-    if (!formData.website_url || !formData.business_type || !formData.primary_goal || formData.channels.length === 0 || !formData.current_tools || !formData.budget || !formData.phone || !formData.email) {
+    // Client-side validation (website_url optional now); instagram, phone, email required
+    if (!formData.instagram_url || !formData.business_type || !formData.primary_goal || formData.channels.length === 0 || !formData.current_tools || !formData.budget || !formData.phone || !formData.email) {
       return;
     }
 
     onSubmit({
       ...formData,
-      website_url: normalizeWebsiteUrl(formData.website_url)
+      website_url: formData.website_url ? normalizeWebsiteUrl(formData.website_url) : "",
+      instagram_url: formData.instagram_url?.trim() || undefined
     });
   };
 
@@ -173,7 +176,9 @@ export default function IntakeForm({ content, onSubmit, isLoading, errors }: Int
           style={{ color: 'var(--text-secondary)' }}
         >
           {field.label}
-          <span className="text-red-500 mr-1">*</span>
+          {(field.key === "instagram_url" || field.key === "phone" || field.key === "email") && (
+            <span className="text-red-500 mr-1">*</span>
+          )}
         </label>
         <input
           type={field.key === "email" ? "email" : field.key === "phone" ? "tel" : "text"}
@@ -195,7 +200,7 @@ export default function IntakeForm({ content, onSubmit, isLoading, errors }: Int
           }}
           aria-describedby={hasError ? `${field.key}_error` : undefined}
           disabled={isLoading}
-          required
+          required={field.key === "instagram_url" || field.key === "phone" || field.key === "email"}
         />
         {hasError && (
           <p id={`${field.key}_error`} className="text-sm text-red-400" role="alert">
@@ -207,7 +212,7 @@ export default function IntakeForm({ content, onSubmit, isLoading, errors }: Int
   };
 
   // Check if all required fields are filled
-  const isFormValid = formData.website_url && 
+  const isFormValid = formData.instagram_url && 
                      formData.business_type && 
                      formData.primary_goal && 
                      formData.channels.length > 0 && 

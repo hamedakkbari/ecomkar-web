@@ -69,7 +69,12 @@ export const agentContent = {
       { 
         key: "website_url", 
         label: "آدرس وب‌سایت", 
-        placeholder: "https://yourwebsite.com" 
+        placeholder: "yourwebsite.com" 
+      },
+      {
+        key: "instagram_url",
+        label: "آدرس اینستاگرام",
+        placeholder: "@username"
       },
       { 
         key: "business_type", 
