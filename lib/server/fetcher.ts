@@ -38,12 +38,17 @@ export async function fetchWithRetry(
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+        "User-Agent": "EcomKar-API/1.0"
+      };
+      if (env.N8N_WEBHOOK_SECRET) {
+        headers["X-Webhook-Secret"] = env.N8N_WEBHOOK_SECRET;
+      }
+
       const response = await fetch(url, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "User-Agent": "EcomKar-API/1.0"
-        },
+        headers,
         body: JSON.stringify(body),
         signal: controller.signal
       });

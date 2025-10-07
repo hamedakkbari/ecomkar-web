@@ -26,6 +26,7 @@ export interface ServerEnv {
   
   // n8n Webhooks
   N8N_WEBHOOK_AGENT?: string;
+  N8N_WEBHOOK_SECRET?: string;
   N8N_WEBHOOK_CONTACT?: string;
   N8N_WEBHOOK_LEAD?: string;
   N8N_WEBHOOK_DEMO?: string;
@@ -111,6 +112,11 @@ function validateEnv(): ServerEnv {
   if (agentWebhook && !isValidUrl(agentWebhook)) {
     errors.push("N8N_WEBHOOK_AGENT must be a valid URL");
   }
+  // Secret is optional but recommended
+  const webhookSecret = process.env.N8N_WEBHOOK_SECRET;
+  if (webhookSecret && webhookSecret.trim().length < 12) {
+    warnings.push("N8N_WEBHOOK_SECRET seems too short; use a strong secret");
+  }
 
   const nodeEnv = process.env.NODE_ENV || "development";
   if (!isValidEnum(nodeEnv, ["development", "production", "test"])) {
@@ -173,6 +179,7 @@ function validateEnv(): ServerEnv {
     
     // n8n Webhooks
     N8N_WEBHOOK_AGENT: process.env.N8N_WEBHOOK_AGENT,
+    N8N_WEBHOOK_SECRET: process.env.N8N_WEBHOOK_SECRET,
     N8N_WEBHOOK_CONTACT: process.env.N8N_WEBHOOK_CONTACT,
     N8N_WEBHOOK_LEAD: process.env.N8N_WEBHOOK_LEAD,
     N8N_WEBHOOK_DEMO: process.env.N8N_WEBHOOK_DEMO,
