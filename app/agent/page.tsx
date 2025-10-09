@@ -20,6 +20,14 @@ export default function AgentIntakePage() {
     if (sessionId) router.push(`/agent/chat?session_id=${encodeURIComponent(sessionId)}`);
   };
 
+  // Auto-redirect to chat when session is ready
+  if (sessionId) {
+    // Avoid rendering the rest of the page while navigating
+    if (typeof window !== "undefined") {
+      router.push(`/agent/chat?session_id=${encodeURIComponent(sessionId)}`);
+    }
+  }
+
   return (
     <main className="min-h-screen" style={{ background: "#0B0F14", color: "#E6F1FF" }}>
       <div className="max-w-6xl mx-auto px-4 py-12 space-y-10">
