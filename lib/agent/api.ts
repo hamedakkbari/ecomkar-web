@@ -16,11 +16,37 @@ async function postJson<T>(url: string, payload: any): Promise<T> {
 }
 
 export async function submitIntake(payload: IntakePayload): Promise<AgentResponse> {
-  return postJson<AgentResponse>("https://n8n.ecomkar.com/webhook-test/agent", payload);
+  // Map client payload to server contract
+  const serverBody: any = {
+    website_url: payload.website_url,
+    instagram_url: payload.instagram,
+    business_type: payload.business_type,
+    primary_goal: payload.primary_goal,
+    channels: payload.channels,
+    current_tools: Array.isArray(payload.current_tools)
+      ? payload.current_tools.join(", ")
+      : payload.current_tools,
+    budget: payload.budget,
+    phone: payload.phone,
+    email: payload.email,
+    consent: payload.consent,
+    hp_token: payload.hp_token ?? ""
+  };
+
+  const raw = await postJson<any>("/api/agent/new", serverBody);
+  // Normalize response to AgentResponse
+  const sessionId = raw?.session?.id || raw?.session_id;
+  const normalized: AgentResponse = {
+    ok: Boolean(raw?.ok),
+    analysis: raw?.analysis,
+    session: sessionId ? { id: String(sessionId) } : undefined,
+    message: raw?.message || raw?.error
+  };
+  return normalized;
 }
 
 export async function sendMessage(payload: ChatMessagePayload): Promise<AgentResponse> {
-  return postJson<AgentResponse>("https://n8n.ecomkar.com/webhook-test/agent", payload);
+  return postJson<AgentResponse>("/api/agent/message", payload);
 }
 
 
