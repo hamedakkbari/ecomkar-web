@@ -16,11 +16,11 @@ async function postJson<T>(url: string, payload: any): Promise<T> {
 }
 
 export async function submitIntake(payload: IntakePayload): Promise<AgentResponse> {
-  return postJson<AgentResponse>("/api/agent/new", payload);
+  return postJson<AgentResponse>("https://n8n.ecomkar.com/webhook-test/agent", payload);
 }
 
 export async function sendMessage(payload: ChatMessagePayload): Promise<AgentResponse> {
-  return postJson<AgentResponse>("/api/agent/message", payload);
+  return postJson<AgentResponse>("https://n8n.ecomkar.com/webhook-test/agent", payload);
 }
 
 
