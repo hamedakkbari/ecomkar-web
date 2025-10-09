@@ -119,7 +119,14 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
         </div>
         <div className="md:col-span-2">
           <label className="block mb-2">هدف اصلی</label>
-          <textarea className="w-full rounded-xl bg-transparent border p-3" rows={2} placeholder="کوتاه توضیح بده…" value={form.primary_goal} onChange={e => update("primary_goal", e.target.value)} />
+          <select className="w-full rounded-xl bg-transparent border p-3 text-white" value={form.primary_goal} onChange={e => update("primary_goal", e.target.value)}>
+            <option className="text-black" value="">انتخاب کنید…</option>
+            <option className="text-black">افزایش فروش</option>
+            <option className="text-black">خودکارسازی پشتیبانی</option>
+            <option className="text-black">افزایش لید</option>
+            <option className="text-black">بهبود UX</option>
+            <option className="text-black">کاهش هزینه‌ها</option>
+          </select>
         </div>
         <div className="md:col-span-2">
           <label className="block mb-2">کانال‌های فروش</label>
