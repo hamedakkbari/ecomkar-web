@@ -83,11 +83,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    // Anti-spam check (using current_tools as content)
+    // Anti-spam check (use safe, URL-stripped snippet to reduce false positives)
+    const safeMessage = typeof body.current_tools === "string"
+      ? body.current_tools.replace(/https?:\/\/\S+/g, "").slice(0, 300)
+      : "";
     const spamCheck = performSpamCheck(
       body.hp_token,
       userAgent,
-      body.current_tools
+      safeMessage
     );
     
     if (spamCheck.isSpam) {
