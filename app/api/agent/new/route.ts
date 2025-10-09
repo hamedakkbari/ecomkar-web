@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerEnv, isWebhookEnabled, isMockMode } from "@/lib/server/env";
 import { validateNewSessionInput } from "@/lib/server/validators";
 import { checkRateLimit } from "@/lib/server/ratelimit";
-import { performSpamCheck } from "@/lib/server/antiSpam";
+import { performSpamCheck, checkHoneypot } from "@/lib/server/antiSpam";
 import { logger, sanitizeForLogging } from "@/lib/server/logger";
 import { sendToWebhook } from "@/lib/server/fetcher";
 import { extractRealIP, hashIP } from "@/lib/server/ip";
@@ -83,15 +83,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    // Anti-spam check (use safe, URL-stripped snippet to reduce false positives)
-    const safeMessage = typeof body.current_tools === "string"
-      ? body.current_tools.replace(/https?:\/\/\S+/g, "").slice(0, 300)
-      : "";
-    const spamCheck = performSpamCheck(
-      body.hp_token,
-      userAgent,
-      safeMessage
-    );
+    // Anti-spam check
+    const relaxedAntiSpam = process.env.ANTI_SPAM_RELAXED === "true";
+    const spamCheck = relaxedAntiSpam
+      ? checkHoneypot(body.hp_token)
+      : performSpamCheck(
+          body.hp_token,
+          userAgent,
+          (typeof body.current_tools === "string" ? body.current_tools.replace(/https?:\/\/\S+/g, "").slice(0, 300) : "")
+        );
     
     if (spamCheck.isSpam) {
       const duration = Date.now() - startTime;
