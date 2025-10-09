@@ -83,14 +83,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    // Anti-spam check (relax or skip based on env)
-    const relaxedAntiSpam = /^(1|true|yes|on)$/i.test(process.env.ANTI_SPAM_RELAXED || "");
-    let spamCheck: { isSpam: boolean; reason?: string } = { isSpam: false };
-    if (!relaxedAntiSpam) {
-      const safeMsg = (typeof body.current_tools === "string" ? body.current_tools.replace(/https?:\/\/\S+/g, "").slice(0, 300) : "");
-      spamCheck = performSpamCheck(body.hp_token, userAgent, safeMsg);
-    }
-
+    // Anti-spam (strictly honeypot only to avoid false-positives)
+    const spamCheck = checkHoneypot(body.hp_token);
     if (spamCheck.isSpam) {
       const duration = Date.now() - startTime;
       logger.warn(route, ipHash, userAgent, duration, 422, "Spam detected", {
