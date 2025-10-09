@@ -45,7 +45,7 @@ export async function submitIntake(payload: IntakePayload): Promise<AgentRespons
 
   const sanitizeTools = (items: string[] | string) => {
     const arr = Array.isArray(items) ? items : String(items).split(",");
-    const cleaned = arr
+    let cleaned = arr
       .map(s => String(s).trim())
       .filter(Boolean)
       .map(s =>
@@ -54,14 +54,18 @@ export async function submitIntake(payload: IntakePayload): Promise<AgentRespons
           .replace(/https?:\/\/\S+/gi, "")
           // remove @handles
           .replace(/@[A-Za-z0-9_\-.]+/g, "")
-          // keep letters, numbers, space, plus, dash
-          .replace(/[^\p{L}\p{N} +\-]/gu, " ")
+          // keep ASCII letters, numbers, space, plus, dash only (reduce false positives)
+          .replace(/[^A-Za-z0-9 +\-]/g, " ")
           .replace(/\s+/g, " ")
           .trim()
       )
       .filter(Boolean)
       .slice(0, 10);
-    return cleaned.join(", ");
+    // Cap overall length aggressively to avoid spam flags
+    let result = cleaned.join(", ");
+    if (!result) result = "WordPress";
+    if (result.length > 140) result = result.slice(0, 140);
+    return result;
   };
 
   const serverBody: any = {
