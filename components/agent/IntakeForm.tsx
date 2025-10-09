@@ -43,7 +43,7 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
     setLoading(true);
     const payload: IntakePayload = {
       website_url: form.website_url?.trim(),
-      instagram: form.instagram?.trim(),
+      instagram_url: form.instagram?.trim(),
       business_type: form.business_type,
       primary_goal: form.primary_goal,
       channels: form.channels,
