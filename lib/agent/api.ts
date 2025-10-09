@@ -43,15 +43,34 @@ export async function submitIntake(payload: IntakePayload): Promise<AgentRespons
     return en.replace(/[^\d+]/g, "");
   };
 
+  const sanitizeTools = (items: string[] | string) => {
+    const arr = Array.isArray(items) ? items : String(items).split(",");
+    const cleaned = arr
+      .map(s => String(s).trim())
+      .filter(Boolean)
+      .map(s =>
+        s
+          // remove URLs
+          .replace(/https?:\/\/\S+/gi, "")
+          // remove @handles
+          .replace(/@[A-Za-z0-9_\-.]+/g, "")
+          // keep letters, numbers, space, plus, dash
+          .replace(/[^\p{L}\p{N} +\-]/gu, " ")
+          .replace(/\s+/g, " ")
+          .trim()
+      )
+      .filter(Boolean)
+      .slice(0, 10);
+    return cleaned.join(", ");
+  };
+
   const serverBody: any = {
     website_url: payload.website_url,
     instagram_url: normalizeInstagram(payload.instagram),
     business_type: payload.business_type,
     primary_goal: payload.primary_goal,
     channels: payload.channels,
-    current_tools: Array.isArray(payload.current_tools)
-      ? payload.current_tools.join(", ")
-      : payload.current_tools,
+    current_tools: sanitizeTools(payload.current_tools),
     budget: payload.budget,
     phone: normalizePhone(payload.phone),
     email: payload.email?.trim(),
