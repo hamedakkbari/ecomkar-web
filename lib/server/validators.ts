@@ -278,7 +278,10 @@ export function validateNewSessionInput(data: any): ValidationResult {
     }
   }
 
-  // Current tools validation
+  // Current tools validation (accept string[] and normalize)
+  if (Array.isArray(data.current_tools)) {
+    data.current_tools = data.current_tools.join(", ");
+  }
   if (!data.current_tools || typeof data.current_tools !== "string" || data.current_tools.trim().length < 3) {
     errors.push({ field: "current_tools", message: "ابزارهای فعلی باید حداقل ۳ کاراکتر باشد." });
   }

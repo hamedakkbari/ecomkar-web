@@ -30,6 +30,14 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
 
   const update = (k: string, v: any) => setForm(prev => ({ ...prev, [k]: v }));
 
+  const normalizeInstagram = (val?: string) => {
+    const v = (val || "").trim();
+    if (!v) return undefined;
+    if (v.startsWith("http://") || v.startsWith("https://")) return v;
+    const handle = v.startsWith("@") ? v.slice(1) : v;
+    return `https://instagram.com/${handle}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
@@ -43,11 +51,11 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
     setLoading(true);
     const payload: IntakePayload = {
       website_url: form.website_url?.trim(),
-      instagram_url: form.instagram?.trim(),
+      instagram_url: normalizeInstagram(form.instagram),
       business_type: form.business_type,
       primary_goal: form.primary_goal,
       channels: form.channels,
-      current_tools: form.current_tools,
+      current_tools: Array.isArray(form.current_tools) ? form.current_tools.join(", ") : (form.current_tools as unknown as string),
       budget: form.budget,
       phone: form.phone?.trim(),
       email: form.email.trim(),
@@ -60,7 +68,14 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
       if (resp.session?.id) onSessionReady(resp.session.id);
       onAnalysis(resp);
     } else {
-      setError(resp.message || "فعلاً سرور تحلیل شلوغه—کمی بعد دوباره تلاش کن.");
+      if (resp.fields && Object.keys(resp.fields).length > 0) {
+        const first = Object.values(resp.fields)[0];
+        setError(first);
+      } else if (resp.message) {
+        setError(resp.message);
+      } else {
+        setError("فعلاً سرور تحلیل شلوغه—کمی بعد دوباره تلاش کن.");
+      }
     }
     setLoading(false);
   };

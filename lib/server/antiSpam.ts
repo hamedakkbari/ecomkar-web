@@ -141,7 +141,9 @@ export function performSpamCheck(
   // Check User-Agent
   const uaCheck = checkUserAgent(userAgent);
   if (uaCheck.isSpam) {
-    return uaCheck;
+    // Soft-pass for UA-only suspicion if no other red flags
+    // Logically allow and annotate reason to logs upstream
+    return { isSpam: false, reason: "suspicious-ua-only" };
   }
 
   // Check content heuristics

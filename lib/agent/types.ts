@@ -1,10 +1,10 @@
 export type IntakePayload = {
   website_url: string;
-  instagram?: string;
+  instagram_url?: string;
   business_type: string;
   primary_goal: string;
   channels: string[];
-  current_tools: string[];
+  current_tools: string; // server expects string; join on client if array UI
   budget: string;
   phone?: string;
   email: string;
@@ -33,6 +33,7 @@ export type AgentResponse = {
   analysis?: Analysis;
   session?: { id: string };
   message?: string;
+  fields?: Record<string, string>;
 };
 
 export type ChatMessagePayload = {
