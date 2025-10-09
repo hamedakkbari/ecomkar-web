@@ -76,6 +76,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         {
           ok: false,
           error: "INVALID_INPUT",
+          message: "برخی مقادیر فرم نامعتبر است. لطفاً فیلدهای مشخص‌شده را اصلاح کنید.",
           fields
         } as NewSessionResponse,
         { status: 400, headers: { "Cache-Control": "no-store" } }
@@ -96,7 +97,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       });
       
       return NextResponse.json(
-        { ok: false, error: "POTENTIAL_SPAM" } as NewSessionResponse,
+        { ok: false, error: "POTENTIAL_SPAM", message: "درخواست شما به‌طور موقت مسدود شد. لطفاً کمی بعد دوباره تلاش کنید." } as NewSessionResponse,
         { status: 422, headers: { "Cache-Control": "no-store" } }
       );
     }
@@ -144,7 +145,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     
     if (isWebhookEnabled(webhookUrl)) {
       // Send to n8n webhook
-      const webhookResult = await sendToWebhook(webhookUrl, webhookPayload);
+      const webhookResult = await sendToWebhook(webhookUrl!, webhookPayload);
       
       if (!webhookResult.success) {
         const duration = Date.now() - startTime;
@@ -157,7 +158,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         sessions.delete(sessionId);
         
         return NextResponse.json(
-          { ok: false, error: "UPSTREAM_UNAVAILABLE" } as NewSessionResponse,
+          { ok: false, error: "UPSTREAM_UNAVAILABLE", message: "خدمت تحلیل در دسترس نیست (Upstream). لطفاً کمی بعد دوباره تلاش کنید." } as NewSessionResponse,
           { status: 502, headers: { "Cache-Control": "no-store" } }
         );
       }
@@ -193,7 +194,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     });
     
     return NextResponse.json(
-      { ok: false, error: "SERVER_ERROR" } as NewSessionResponse,
+      { ok: false, error: "SERVER_ERROR", message: "خطای داخلی سرور رخ داد. لطفاً کمی بعد تلاش کنید." } as NewSessionResponse,
       { status: 500, headers: { "Cache-Control": "no-store" } }
     );
   }
