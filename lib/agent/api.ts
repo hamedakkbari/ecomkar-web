@@ -17,9 +17,20 @@ async function postJson<T>(url: string, payload: any): Promise<T> {
 
 export async function submitIntake(payload: IntakePayload): Promise<AgentResponse> {
   // Map client payload to server contract
+  const normalizeInstagram = (val?: string) => {
+    if (!val) return undefined;
+    const v = val.trim();
+    if (!v) return undefined;
+    // If it's already a URL, pass through
+    if (/^https?:\/\//i.test(v)) return v;
+    // If it starts with @ or is a handle, convert to profile URL
+    const handle = v.replace(/^@+/, "");
+    return `https://instagram.com/${handle}`;
+  };
+
   const serverBody: any = {
     website_url: payload.website_url,
-    instagram_url: payload.instagram,
+    instagram_url: normalizeInstagram(payload.instagram),
     business_type: payload.business_type,
     primary_goal: payload.primary_goal,
     channels: payload.channels,
