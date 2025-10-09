@@ -59,7 +59,13 @@ export async function fetchWithRetry(
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
-      const data = await response.json();
+      let data: any;
+      try {
+        data = await response.json();
+      } catch {
+        // Tolerate empty/non-JSON responses from webhook
+        data = {};
+      }
       
       return {
         success: true,
