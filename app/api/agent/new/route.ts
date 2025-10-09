@@ -152,9 +152,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         // Clean up session on webhook failure
         sessions.delete(sessionId);
         
+        const status = webhookResult.status || 502;
         return NextResponse.json(
-          { ok: false, error: "UPSTREAM_UNAVAILABLE", message: "خدمت تحلیل در دسترس نیست (Upstream). لطفاً کمی بعد دوباره تلاش کنید." } as NewSessionResponse,
-          { status: 502, headers: { "Cache-Control": "no-store" } }
+          { ok: false, error: "UPSTREAM_UNAVAILABLE", message: `Upstream وضعیت ${status}. لطفاً کمی بعد تلاش کنید.` } as NewSessionResponse,
+          { status, headers: { "Cache-Control": "no-store" } }
         );
       }
     } else {

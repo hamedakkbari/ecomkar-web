@@ -75,6 +75,12 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
         setError("درخواست شما به‌طور موقت مسدود شد — لطفاً صحت اطلاعات را بررسی کنید یا کمی بعد دوباره تلاش کنید.");
       } else if ((resp as any).error === "UPSTREAM_UNAVAILABLE") {
         setError("خدمت تحلیل در دسترس نیست. لطفاً کمی بعد دوباره تلاش کنید.");
+      } else if ((resp as any).error === "RATE_LIMITED") {
+        setError("محدودیت سرعت موقتاً اعمال شده است. کمی بعد دوباره تلاش کنید.");
+      } else if ((resp as any).error === "SERVER_ERROR") {
+        setError("خطای داخلی سرور رخ داد. کمی بعد دوباره تلاش کنید.");
+      } else if ((resp as any).error === "INVALID_INPUT") {
+        setError("برخی مقادیر فرم نامعتبر است. لطفاً فیلدها را بررسی کنید.");
       } else if (resp.message) {
         setError(resp.message);
       } else {

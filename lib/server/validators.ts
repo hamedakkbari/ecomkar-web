@@ -236,10 +236,10 @@ export interface NewSessionInput {
   utm?: Record<string, string>;
 }
 
-const AGENT_BUSINESS_TYPES = ["فروشگاه آنلاین", "خدمات B2B", "آموزش", "B2C", "سایر"];
-const AGENT_PRIMARY_GOALS = ["افزایش فروش", "خودکارسازی پشتیبانی", "افزایش لید", "بهبود UX", "کاهش هزینه‌ها"];
-const AGENT_CHANNELS = ["وب‌سایت", "اینستاگرام", "تلگرام", "واتساپ", "ایمیل", "فیزیکی"];
-const AGENT_BUDGET_OPTIONS = ["کمتر از ۵ میلیون", "۵-۱۵ میلیون", "۱۵-۳۰ میلیون", "بیش از ۳۰ میلیون"];
+const AGENT_BUSINESS_TYPES = ["فروشگاه آنلاین", "خدمات B2B", "آموزش", "B2C", "سایر", "ecommerce", "services", "education", "b2b", "b2c", "other"];
+const AGENT_PRIMARY_GOALS = ["افزایش فروش", "خودکارسازی پشتیبانی", "افزایش لید", "بهبود UX", "کاهش هزینه‌ها", "increase_sales", "automation", "lead_generation", "improve_ux", "reduce_costs"];
+const AGENT_CHANNELS = ["وب‌سایت", "اینستاگرام", "تلگرام", "واتساپ", "ایمیل", "فیزیکی", "website", "instagram", "telegram", "whatsapp", "email", "physical"];
+const AGENT_BUDGET_OPTIONS = ["کمتر از ۵ میلیون", "۵-۱۵ میلیون", "۱۵-۳۰ میلیون", "بیش از ۳۰ میلیون", "under_5m", "5_15m", "15_30m", "over_30m"];
 
 export function validateNewSessionInput(data: any): ValidationResult {
   const errors: ValidationError[] = [];
@@ -258,24 +258,19 @@ export function validateNewSessionInput(data: any): ValidationResult {
     }
   }
 
-  // Business type validation
-  if (!data.business_type || !AGENT_BUSINESS_TYPES.includes(data.business_type)) {
-    errors.push({ field: "business_type", message: "نوع کسب‌وکار نامعتبر است." });
+  // Business type validation - accept any non-empty string
+  if (!data.business_type || typeof data.business_type !== "string" || data.business_type.trim().length === 0) {
+    errors.push({ field: "business_type", message: "نوع کسب‌وکار الزامی است." });
   }
 
-  // Primary goal validation
-  if (!data.primary_goal || !AGENT_PRIMARY_GOALS.includes(data.primary_goal)) {
-    errors.push({ field: "primary_goal", message: "هدف اصلی نامعتبر است." });
+  // Primary goal validation - accept any non-empty string
+  if (!data.primary_goal || typeof data.primary_goal !== "string" || data.primary_goal.trim().length === 0) {
+    errors.push({ field: "primary_goal", message: "هدف اصلی الزامی است." });
   }
 
-  // Channels validation
+  // Channels validation - accept any non-empty array
   if (!Array.isArray(data.channels) || data.channels.length === 0) {
     errors.push({ field: "channels", message: "حداقل یک کانال انتخاب کنید." });
-  } else {
-    const invalidChannels = data.channels.filter((channel: string) => !AGENT_CHANNELS.includes(channel));
-    if (invalidChannels.length > 0) {
-      errors.push({ field: "channels", message: "کانال‌های انتخاب شده نامعتبر هستند." });
-    }
   }
 
   // Current tools validation (accept string[] and normalize)
@@ -286,9 +281,9 @@ export function validateNewSessionInput(data: any): ValidationResult {
     errors.push({ field: "current_tools", message: "ابزارهای فعلی باید حداقل ۳ کاراکتر باشد." });
   }
 
-  // Budget validation
-  if (!data.budget || !AGENT_BUDGET_OPTIONS.includes(data.budget)) {
-    errors.push({ field: "budget", message: "بودجه نامعتبر است." });
+  // Budget validation - accept any non-empty string
+  if (!data.budget || typeof data.budget !== "string" || data.budget.trim().length === 0) {
+    errors.push({ field: "budget", message: "بودجه الزامی است." });
   }
 
   // Phone validation (required)

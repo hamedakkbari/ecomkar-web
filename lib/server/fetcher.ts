@@ -56,7 +56,16 @@ export async function fetchWithRetry(
       clearTimeout(timeoutId);
 
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        // Capture upstream response body for diagnostics (truncated)
+        let errorBody = "";
+        try {
+          errorBody = await response.text();
+        } catch {}
+        return {
+          success: false,
+          error: `HTTP ${response.status}: ${response.statusText}${errorBody ? ` | body: ${errorBody.slice(0, 300)}` : ""}`,
+          status: response.status
+        };
       }
 
       let data: any;
