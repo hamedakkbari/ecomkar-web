@@ -42,7 +42,7 @@ export default function ChatUI({ sessionId, initialNextActions }: Props) {
       const rawAny = sessionStorage.getItem("agent_initial_raw");
       if (rawAny) {
         const parsedAny = JSON.parse(rawAny);
-        const guess = parsedAny?.reply || parsedAny?.message || parsedAny?.text || parsedAny?.analysis?.summary || "";
+        const guess = parsedAny?.reply || parsedAny?.text || parsedAny?.analysis?.summary || ""; // intentionally skip generic message
         if (guess) {
           setMessages([{ id: String(Date.now()), role: "assistant", content: String(guess) }]);
         }
@@ -57,7 +57,7 @@ export default function ChatUI({ sessionId, initialNextActions }: Props) {
       if (messages.length > 0) return;
       try {
         const resp: AgentResponse = await sendMessage({ session_id: sessionId, message: "__init__", hp_token: "" });
-        const reply = resp?.analysis?.summary || resp?.message || "";
+        const reply = resp?.analysis?.summary || (resp as any)?.reply || (resp as any)?.text || "";
         if (reply) {
           setMessages([{ id: String(Date.now()), role: "assistant", content: reply }]);
         }
