@@ -65,7 +65,8 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
 
     const resp = await submitIntake(payload);
     if (resp.ok) {
-      if (resp.session?.id) onSessionReady(resp.session.id);
+      const sid = (resp as any).session_id || resp.session?.id;
+      if (sid) onSessionReady(String(sid));
       onAnalysis(resp);
     } else {
       if (resp.fields && Object.keys(resp.fields).length > 0) {

@@ -14,7 +14,13 @@ export default function AgentIntakePage() {
   const router = useRouter();
 
   const handleAnalysis = (r: AgentResponse) => setResp(r);
-  const handleSession = (id: string) => setSessionId(id);
+  const handleSession = (id: string) => {
+    setSessionId(id);
+    // Auto-redirect as soon as session is ready
+    if (id) {
+      router.push(`/agent/chat?session_id=${encodeURIComponent(id)}`);
+    }
+  };
 
   const goChat = () => {
     if (sessionId) router.push(`/agent/chat?session_id=${encodeURIComponent(sessionId)}`);
