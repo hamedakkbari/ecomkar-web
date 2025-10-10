@@ -25,12 +25,26 @@ export default function ChatUI({ sessionId, initialNextActions }: Props) {
   // Seed with initial assistant message from sessionStorage if present
   useEffect(() => {
     try {
-      const raw = sessionStorage.getItem("agent_initial_analysis");
-      if (raw) {
-        const parsed = JSON.parse(raw);
+      const fromReply = sessionStorage.getItem("agent_initial_reply");
+      if (fromReply && fromReply.length > 0) {
+        setMessages([{ id: String(Date.now()), role: "assistant", content: fromReply }]);
+        return;
+      }
+      const rawAnalysis = sessionStorage.getItem("agent_initial_analysis");
+      if (rawAnalysis) {
+        const parsed = JSON.parse(rawAnalysis);
         const initialText = parsed?.summary || parsed?.reply || undefined;
         if (initialText && typeof initialText === "string") {
           setMessages([{ id: String(Date.now()), role: "assistant", content: initialText }]);
+          return;
+        }
+      }
+      const rawAny = sessionStorage.getItem("agent_initial_raw");
+      if (rawAny) {
+        const parsedAny = JSON.parse(rawAny);
+        const guess = parsedAny?.reply || parsedAny?.message || parsedAny?.text || parsedAny?.analysis?.summary || "";
+        if (guess) {
+          setMessages([{ id: String(Date.now()), role: "assistant", content: String(guess) }]);
         }
       }
     } catch {}
