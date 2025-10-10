@@ -66,7 +66,6 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
     const resp = await submitIntake(payload);
     if (resp.ok) {
       const sid = (resp as any).session_id || resp.session?.id;
-      if (sid) onSessionReady(String(sid));
       try {
         sessionStorage.setItem("agent_initial_raw", JSON.stringify(resp));
         const analysis = (resp as any).analysis;
@@ -82,6 +81,7 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
           sessionStorage.setItem("agent_initial_text", initialText);
         }
       } catch {}
+      if (sid) onSessionReady(String(sid));
       onAnalysis(resp);
     } else {
       if (resp.fields && Object.keys(resp.fields).length > 0) {

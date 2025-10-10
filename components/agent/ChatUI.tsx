@@ -62,7 +62,7 @@ export default function ChatUI({ sessionId, initialNextActions }: Props) {
       if (messages.length > 0) return;
       try {
         const resp: AgentResponse = await sendMessage({ session_id: sessionId, message: "__init__", hp_token: "" });
-        const reply = resp?.analysis?.summary || (resp as any)?.reply || (resp as any)?.text || "";
+        const reply = (resp as any)?.reply || (resp as any)?.text || resp?.analysis?.summary || "";
         if (reply) {
           setMessages([{ id: String(Date.now()), role: "assistant", content: reply }]);
         }

@@ -160,7 +160,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         );
       } else {
         // Pass through any analysis-like payload from n8n if present
-        if (webhookResult.data && (webhookResult.data.analysis || webhookResult.data.reply || webhookResult.data.blocks)) {
+        if (webhookResult.data) {
           initialAnalysis = webhookResult.data;
         }
       }
@@ -185,9 +185,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         ok: true,
         session_id: sessionId,
         message: "جلسه با موفقیت ایجاد شد",
-        analysis: initialAnalysis?.analysis,
+        analysis: initialAnalysis?.analysis || initialAnalysis,
         blocks: initialAnalysis?.blocks,
-        reply: initialAnalysis?.reply
+        reply: initialAnalysis?.reply || initialAnalysis?.text
       } as NewSessionResponse,
       { headers: { "Cache-Control": "no-store" } }
     );
