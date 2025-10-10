@@ -22,6 +22,20 @@ export default function ChatUI({ sessionId, initialNextActions }: Props) {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Seed with initial assistant message from sessionStorage if present
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("agent_initial_analysis");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        const initialText = parsed?.summary || parsed?.reply || undefined;
+        if (initialText && typeof initialText === "string") {
+          setMessages([{ id: String(Date.now()), role: "assistant", content: initialText }]);
+        }
+      }
+    } catch {}
+  }, []);
+
   const onSend = async () => {
     const content = input.trim();
     if (!content || sending) return;
