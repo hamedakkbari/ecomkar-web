@@ -25,6 +25,11 @@ export default function ChatUI({ sessionId, initialNextActions }: Props) {
   // Seed with initial assistant message from sessionStorage if present
   useEffect(() => {
     try {
+      const fromText = sessionStorage.getItem("agent_initial_text");
+      if (fromText && fromText.length > 0) {
+        setMessages([{ id: String(Date.now()), role: "assistant", content: fromText }]);
+        return;
+      }
       const fromReply = sessionStorage.getItem("agent_initial_reply");
       if (fromReply && fromReply.length > 0) {
         setMessages([{ id: String(Date.now()), role: "assistant", content: fromReply }]);

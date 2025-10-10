@@ -168,7 +168,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         
         responseData = {
           ok: true,
-          reply: agentReply.reply,
+          reply: agentReply.reply || agentReply.text || agentReply.analysis?.summary || "",
           blocks: agentReply.blocks,
           session_id: body.session_id
         };

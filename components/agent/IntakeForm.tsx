@@ -69,11 +69,17 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
       if (sid) onSessionReady(String(sid));
       try {
         sessionStorage.setItem("agent_initial_raw", JSON.stringify(resp));
-        if ((resp as any).analysis) {
-          sessionStorage.setItem("agent_initial_analysis", JSON.stringify((resp as any).analysis));
+        const analysis = (resp as any).analysis;
+        const reply = (resp as any).reply;
+        if (analysis) {
+          sessionStorage.setItem("agent_initial_analysis", JSON.stringify(analysis));
         }
-        if ((resp as any).reply) {
-          sessionStorage.setItem("agent_initial_reply", String((resp as any).reply));
+        if (typeof reply === "string" && reply.length > 0) {
+          sessionStorage.setItem("agent_initial_reply", String(reply));
+        }
+        const initialText = (analysis?.summary as string) || (reply as string) || (resp as any)?.text || "";
+        if (initialText && initialText.length > 0) {
+          sessionStorage.setItem("agent_initial_text", initialText);
         }
       } catch {}
       onAnalysis(resp);
