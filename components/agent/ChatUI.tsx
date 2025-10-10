@@ -36,6 +36,22 @@ export default function ChatUI({ sessionId, initialNextActions }: Props) {
     } catch {}
   }, []);
 
+  // Auto-fetch first assistant message from n8n by sending a synthetic init message
+  useEffect(() => {
+    (async () => {
+      // If already have a seeded assistant message, skip auto-init
+      if (messages.length > 0) return;
+      try {
+        const resp: AgentResponse = await sendMessage({ session_id: sessionId, message: "__init__", hp_token: "" });
+        const reply = resp?.analysis?.summary || resp?.message || "";
+        if (reply) {
+          setMessages([{ id: String(Date.now()), role: "assistant", content: reply }]);
+        }
+      } catch {}
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessionId]);
+
   const onSend = async () => {
     const content = input.trim();
     if (!content || sending) return;
