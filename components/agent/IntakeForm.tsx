@@ -7,10 +7,9 @@ import type { AgentResponse, IntakePayload } from "@/lib/agent/types";
 
 type Props = {
   onAnalysis: (resp: AgentResponse) => void;
-  onSessionReady: (sessionId: string) => void;
 };
 
-export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
+export default function IntakeForm({ onAnalysis }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -65,23 +64,6 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
 
     const resp = await submitIntake(payload);
     if (resp.ok) {
-      const sid = (resp as any).session_id || resp.session?.id;
-      try {
-        sessionStorage.setItem("agent_initial_raw", JSON.stringify(resp));
-        const analysis = (resp as any).analysis;
-        const reply = (resp as any).reply;
-        if (analysis) {
-          sessionStorage.setItem("agent_initial_analysis", JSON.stringify(analysis));
-        }
-        if (typeof reply === "string" && reply.length > 0) {
-          sessionStorage.setItem("agent_initial_reply", String(reply));
-        }
-        const initialText = (analysis?.summary as string) || (reply as string) || (resp as any)?.text || "";
-        if (initialText && initialText.length > 0) {
-          sessionStorage.setItem("agent_initial_text", initialText);
-        }
-      } catch {}
-      if (sid) onSessionReady(String(sid));
       onAnalysis(resp);
     } else {
       if (resp.fields && Object.keys(resp.fields).length > 0) {

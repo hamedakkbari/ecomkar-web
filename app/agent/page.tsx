@@ -5,26 +5,12 @@ import IntakeForm from "@/components/agent/IntakeForm";
 import AnalysisCards from "@/components/agent/AnalysisCards";
 import Glow from "@/lib/ui/glow";
 import type { AgentResponse } from "@/lib/agent/types";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 export default function AgentIntakePage() {
   const [resp, setResp] = useState<AgentResponse | null>(null);
-  const [sessionId, setSessionId] = useState<string | null>(null);
-  const router = useRouter();
 
   const handleAnalysis = (r: AgentResponse) => setResp(r);
-  const handleSession = (id: string) => {
-    setSessionId(id);
-    // Auto-redirect as soon as session is ready
-    if (id) {
-      router.push(`/agent/chat?session_id=${encodeURIComponent(id)}`);
-    }
-  };
-
-  const goChat = () => {
-    if (sessionId) router.push(`/agent/chat?session_id=${encodeURIComponent(sessionId)}`);
-  };
 
   return (
     <main className="min-h-screen" style={{ background: "#0B0F14", color: "#E6F1FF" }}>
@@ -42,22 +28,15 @@ export default function AgentIntakePage() {
           <div className="lg:col-span-7">
             <Glow>
               <div className="rounded-3xl border p-8 bg-white/5">
-                <IntakeForm onAnalysis={handleAnalysis} onSessionReady={handleSession} />
+                <IntakeForm onAnalysis={handleAnalysis} />
               </div>
             </Glow>
           </div>
           <div className="lg:col-span-5">
-            {resp?.ok && resp.analysis ? (
+            {resp?.ok ? (
               <Glow>
                 <div className="rounded-3xl border p-6 bg-white/5">
-                  <AnalysisCards analysis={resp.analysis} />
-                  {sessionId && (
-                    <div className="mt-6 flex justify-end">
-                      <button onClick={goChat} className="px-6 py-3 rounded-xl bg-fuchsia-500/20 border border-fuchsia-400/40">
-                        شروع گفتگوی مشاوره‌ای
-                      </button>
-                    </div>
-                  )}
+                  <AnalysisCards analysis={resp.analysis || resp.reply || resp.text || resp} />
                 </div>
               </Glow>
             ) : (
