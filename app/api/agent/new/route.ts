@@ -138,6 +138,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const env = getServerEnv();
     const webhookUrl = env.N8N_WEBHOOK_AGENT;
     
+    let initialAnalysis: any = undefined;
     if (isWebhookEnabled(webhookUrl)) {
       // Send to n8n webhook
       const webhookResult = await sendToWebhook(webhookUrl!, webhookPayload);
@@ -157,6 +158,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           { ok: false, error: "UPSTREAM_UNAVAILABLE", message: `Upstream وضعیت ${status}. لطفاً کمی بعد تلاش کنید.` } as NewSessionResponse,
           { status, headers: { "Cache-Control": "no-store" } }
         );
+      } else {
+        // Pass through any analysis-like payload from n8n if present
+        if (webhookResult.data && (webhookResult.data.analysis || webhookResult.data.reply || webhookResult.data.blocks)) {
+          initialAnalysis = webhookResult.data;
+        }
       }
     } else {
       // Mock mode
@@ -178,7 +184,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       {
         ok: true,
         session_id: sessionId,
-        message: "جلسه با موفقیت ایجاد شد"
+        message: "جلسه با موفقیت ایجاد شد",
+        analysis: initialAnalysis?.analysis,
+        blocks: initialAnalysis?.blocks,
+        reply: initialAnalysis?.reply
       } as NewSessionResponse,
       { headers: { "Cache-Control": "no-store" } }
     );

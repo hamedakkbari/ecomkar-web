@@ -67,6 +67,11 @@ export default function IntakeForm({ onAnalysis, onSessionReady }: Props) {
     if (resp.ok) {
       const sid = (resp as any).session_id || resp.session?.id;
       if (sid) onSessionReady(String(sid));
+      try {
+        if ((resp as any).analysis) {
+          sessionStorage.setItem("agent_initial_analysis", JSON.stringify((resp as any).analysis));
+        }
+      } catch {}
       onAnalysis(resp);
     } else {
       if (resp.fields && Object.keys(resp.fields).length > 0) {

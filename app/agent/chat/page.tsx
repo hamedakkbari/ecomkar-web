@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ChatUI from "@/components/agent/ChatUI";
 import Glow from "@/lib/ui/glow";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -9,6 +9,19 @@ export default function AgentChatPage() {
   const params = useSearchParams();
   const router = useRouter();
   const sessionId = useMemo(() => params.get("session_id") || "", [params]);
+  const [initialNextActions, setInitialNextActions] = useState<string[] | undefined>(undefined);
+
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("agent_initial_analysis");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed?.next_actions && Array.isArray(parsed.next_actions)) {
+          setInitialNextActions(parsed.next_actions as string[]);
+        }
+      }
+    } catch {}
+  }, []);
 
   if (!sessionId) {
     return (
@@ -33,7 +46,7 @@ export default function AgentChatPage() {
             <h1 className="text-2xl font-bold">EcomKar Agent Advisor — گفتگو</h1>
           </div>
         </Glow>
-        <ChatUI sessionId={sessionId} />
+        <ChatUI sessionId={sessionId} initialNextActions={initialNextActions} />
       </div>
     </main>
   );
