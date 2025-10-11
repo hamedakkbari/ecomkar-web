@@ -6,10 +6,14 @@ import type { Analysis } from "@/lib/agent/types";
 type Props = { analysis: Analysis };
 
 export default function AnalysisCards({ analysis }: Props) {
+  // Handle different response formats from n8n
+  console.log("Analysis data:", analysis); // Debug log
+  
   // Handle both structured analysis and raw text responses
-  const summary = analysis?.summary || (typeof analysis === 'string' ? analysis : '');
-  const agents = analysis?.agents || [];
-  const nextActions = analysis?.next_actions || [];
+  const summary = analysis?.summary || analysis?.reply || analysis?.text || (typeof analysis === 'string' ? analysis : '');
+  const agents = analysis?.agents || analysis?.recommendations || [];
+  const nextActions = analysis?.next_actions || analysis?.plan_7d || [];
+  const blocks = analysis?.blocks;
 
   return (
     <div className="space-y-6">
@@ -45,6 +49,15 @@ export default function AnalysisCards({ analysis }: Props) {
           <ul className="list-disc pr-6 space-y-1 opacity-90">
             {nextActions.map((n, i) => <li key={i}>{n}</li>)}
           </ul>
+        </motion.div>
+      )}
+
+      {blocks && (
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl border p-6 bg-white/5">
+          <h3 className="text-lg mb-3">جزئیات تحلیل</h3>
+          <div className="text-sm opacity-80 whitespace-pre-wrap">
+            {JSON.stringify(blocks, null, 2)}
+          </div>
         </motion.div>
       )}
     </div>

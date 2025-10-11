@@ -63,6 +63,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
     };
 
     const resp = await submitIntake(payload);
+    console.log("Agent response:", resp); // Debug log
     if (resp.ok) {
       onAnalysis(resp);
     } else {

@@ -161,7 +161,24 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       } else {
         // Pass through any analysis-like payload from n8n if present
         if (webhookResult.data) {
-          initialAnalysis = webhookResult.data;
+          // Handle different response formats from n8n
+          const data = webhookResult.data;
+          initialAnalysis = {
+            analysis: data.analysis || data,
+            blocks: data.blocks,
+            reply: data.reply || data.text || data.message,
+            text: data.text || data.reply || data.message
+          };
+          
+          // Log the response for debugging
+          const duration = Date.now() - startTime;
+          logger.info(route, ipHash, userAgent, duration, 200, "Webhook response received", {
+            sessionId,
+            responseKeys: Object.keys(data),
+            hasAnalysis: !!data.analysis,
+            hasBlocks: !!data.blocks,
+            hasReply: !!(data.reply || data.text || data.message)
+          });
         }
       }
     } else {

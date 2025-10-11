@@ -156,11 +156,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       if (webhookResult.success) {
         const agentReply = webhookResult.data;
         
+        // Handle different response formats from n8n
+        const replyText = agentReply.reply || agentReply.text || agentReply.message || agentReply.analysis?.summary || "";
+        
         // Add assistant message to session
         const assistantMessage = {
           id: generateId(),
           role: "assistant" as const,
-          content: agentReply.reply,
+          content: replyText,
           timestamp: new Date().toISOString()
         };
         
@@ -168,10 +171,20 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         
         responseData = {
           ok: true,
-          reply: agentReply.reply || agentReply.text || agentReply.analysis?.summary || "",
+          reply: replyText,
           blocks: agentReply.blocks,
           session_id: body.session_id
         };
+        
+        // Log the response for debugging
+        const duration = Date.now() - startTime;
+        logger.info(route, ipHash, userAgent, duration, 200, "Webhook response received", {
+          sessionId: body.session_id,
+          responseKeys: Object.keys(agentReply),
+          hasBlocks: !!agentReply.blocks,
+          hasReply: !!replyText,
+          replyLength: replyText.length
+        });
       } else {
         const duration = Date.now() - startTime;
         logger.error(route, ipHash, userAgent, duration, 502, "Webhook failed", {
