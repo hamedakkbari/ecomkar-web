@@ -54,7 +54,7 @@ export interface CoursePage {
 export default {
   hero: {
     heading: "دوره ساخت AI AGENT با هوش‌مصنوعی (پروژه محور)",
-    sub: "از صفر تا ایجنت عملی",
+    sub: "",
     media: {
       type: "image",
       src: "/media/course-cover.jpg",

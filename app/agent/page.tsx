@@ -60,8 +60,8 @@ export default function AgentIntakePage() {
                 <h2 className="text-2xl font-bold">اطلاعات کسب‌وکار شما</h2>
               </div>
               <IntakeForm onAnalysis={handleAnalysis} />
-            </div>
-          </Glow>
+          </div>
+        </Glow>
         </motion.div>
 
         {/* Analysis Results Section */}
@@ -99,7 +99,7 @@ export default function AgentIntakePage() {
                 <p className="text-gray-300 text-center">
                   برای پیاده‌سازی راهکارهای پیشنهادی و دریافت مشاوره شخصی‌سازی شده
                 </p>
-              </div>
+          </div>
 
               <Glow>
                 <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl p-8 shadow-2xl">
@@ -187,8 +187,8 @@ export default function AgentIntakePage() {
                   <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
                   <span>راهکارهای عملی</span>
                 </div>
-              </div>
-            </div>
+          </div>
+        </div>
           </motion.div>
         )}
       </div>
