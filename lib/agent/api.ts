@@ -2,12 +2,18 @@ import type { AgentResponse, IntakePayload, ChatMessagePayload } from "./types";
 
 async function postJson<T>(url: string, payload: any): Promise<T> {
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+    
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "omit",
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      signal: controller.signal
     });
+    
+    clearTimeout(timeoutId);
     
     if (!res.ok) {
       console.error(`API Error: ${res.status} ${res.statusText}`);
@@ -23,6 +29,9 @@ async function postJson<T>(url: string, payload: any): Promise<T> {
     return data as T;
   } catch (e) {
     console.error("Network error:", e);
+    if (e instanceof Error && e.name === 'AbortError') {
+      return { ok: false, error: "TIMEOUT", message: "زمان انتظار به پایان رسید. لطفاً دوباره تلاش کنید." } as unknown as T;
+    }
     return { ok: false, error: "NETWORK_ERROR", message: "خطای شبکه. لطفاً اتصال اینترنت خود را بررسی کنید." } as unknown as T;
   }
 }

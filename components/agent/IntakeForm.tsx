@@ -62,7 +62,10 @@ export default function IntakeForm({ onAnalysis }: Props) {
       hp_token: ""
     };
 
-    const resp = await submitIntake(payload);
+    try {
+      console.log("ارسال درخواست به n8n...");
+      const resp = await submitIntake(payload);
+      console.log("پاسخ دریافت شد:", resp);
     console.log("Agent response:", resp); // Debug log
     if (resp.ok) {
       // Handle different response formats
@@ -87,13 +90,21 @@ export default function IntakeForm({ onAnalysis }: Props) {
         setError("خطای داخلی سرور رخ داد. کمی بعد دوباره تلاش کنید.");
       } else if ((resp as any).error === "INVALID_INPUT") {
         setError("برخی مقادیر فرم نامعتبر است. لطفاً فیلدها را بررسی کنید.");
+      } else if ((resp as any).error === "TIMEOUT") {
+        setError("زمان انتظار به پایان رسید. n8n کمی دیر پاسخ داد. لطفاً دوباره تلاش کنید.");
+      } else if ((resp as any).error === "NETWORK_ERROR") {
+        setError("خطای شبکه. لطفاً اتصال اینترنت خود را بررسی کنید.");
       } else if (resp.message) {
         setError(resp.message);
       } else {
         setError("فعلاً سرور تحلیل شلوغه—کمی بعد دوباره تلاش کن.");
       }
+    } catch (error) {
+      console.error("خطا در ارسال درخواست:", error);
+      setError("خطا در ارسال درخواست. لطفاً دوباره تلاش کنید.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
       return (
@@ -181,8 +192,11 @@ export default function IntakeForm({ onAnalysis }: Props) {
         </div>
       </div>
       <div className="flex justify-end">
-        <button type="submit" className="px-6 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 hover:bg-cyan-500/30 transition disabled:opacity-50" disabled={loading}>
-          {loading ? "در حال تحلیل…" : "دریافت تحلیل هوشمند"}
+        <button type="submit" className="px-6 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 hover:bg-cyan-500/30 transition disabled:opacity-50 flex items-center gap-2" disabled={loading}>
+          {loading && (
+            <div className="w-4 h-4 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
+          )}
+          {loading ? "در حال ارسال به n8n و دریافت تحلیل…" : "دریافت تحلیل هوشمند"}
         </button>
             </div>
       </motion.form>
