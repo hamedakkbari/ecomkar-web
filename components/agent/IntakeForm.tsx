@@ -66,38 +66,39 @@ export default function IntakeForm({ onAnalysis }: Props) {
       console.log("ارسال درخواست به n8n...");
       const resp = await submitIntake(payload);
       console.log("پاسخ دریافت شد:", resp);
-    console.log("Agent response:", resp); // Debug log
-    if (resp.ok) {
-      // Handle different response formats
-      const analysisData = resp.analysis || resp;
-      onAnalysis({
-        ok: true,
-        analysis: analysisData,
-        reply: resp.reply || resp.text || analysisData?.summary,
-        text: resp.text || resp.reply || analysisData?.summary
-      });
-    } else {
-      if (resp.fields && Object.keys(resp.fields).length > 0) {
-        const first = Object.values(resp.fields)[0];
-        setError(first);
-      } else if ((resp as any).error === "POTENTIAL_SPAM") {
-        setError("درخواست شما به‌طور موقت مسدود شد — لطفاً صحت اطلاعات را بررسی کنید یا کمی بعد دوباره تلاش کنید.");
-      } else if ((resp as any).error === "UPSTREAM_UNAVAILABLE") {
-        setError("خدمت تحلیل در دسترس نیست. لطفاً کمی بعد دوباره تلاش کنید.");
-      } else if ((resp as any).error === "RATE_LIMITED") {
-        setError("محدودیت سرعت موقتاً اعمال شده است. کمی بعد دوباره تلاش کنید.");
-      } else if ((resp as any).error === "SERVER_ERROR") {
-        setError("خطای داخلی سرور رخ داد. کمی بعد دوباره تلاش کنید.");
-      } else if ((resp as any).error === "INVALID_INPUT") {
-        setError("برخی مقادیر فرم نامعتبر است. لطفاً فیلدها را بررسی کنید.");
-      } else if ((resp as any).error === "TIMEOUT") {
-        setError("زمان انتظار به پایان رسید. n8n کمی دیر پاسخ داد. لطفاً دوباره تلاش کنید.");
-      } else if ((resp as any).error === "NETWORK_ERROR") {
-        setError("خطای شبکه. لطفاً اتصال اینترنت خود را بررسی کنید.");
-      } else if (resp.message) {
-        setError(resp.message);
+      
+      if (resp.ok) {
+        // Handle different response formats
+        const analysisData = resp.analysis || resp;
+        onAnalysis({
+          ok: true,
+          analysis: analysisData,
+          reply: resp.reply || resp.text || analysisData?.summary,
+          text: resp.text || resp.reply || analysisData?.summary
+        });
       } else {
-        setError("فعلاً سرور تحلیل شلوغه—کمی بعد دوباره تلاش کن.");
+        if (resp.fields && Object.keys(resp.fields).length > 0) {
+          const first = Object.values(resp.fields)[0];
+          setError(first);
+        } else if ((resp as any).error === "POTENTIAL_SPAM") {
+          setError("درخواست شما به‌طور موقت مسدود شد — لطفاً صحت اطلاعات را بررسی کنید یا کمی بعد دوباره تلاش کنید.");
+        } else if ((resp as any).error === "UPSTREAM_UNAVAILABLE") {
+          setError("خدمت تحلیل در دسترس نیست. لطفاً کمی بعد دوباره تلاش کنید.");
+        } else if ((resp as any).error === "RATE_LIMITED") {
+          setError("محدودیت سرعت موقتاً اعمال شده است. کمی بعد دوباره تلاش کنید.");
+        } else if ((resp as any).error === "SERVER_ERROR") {
+          setError("خطای داخلی سرور رخ داد. کمی بعد دوباره تلاش کنید.");
+        } else if ((resp as any).error === "INVALID_INPUT") {
+          setError("برخی مقادیر فرم نامعتبر است. لطفاً فیلدها را بررسی کنید.");
+        } else if ((resp as any).error === "TIMEOUT") {
+          setError("زمان انتظار به پایان رسید. n8n کمی دیر پاسخ داد. لطفاً دوباره تلاش کنید.");
+        } else if ((resp as any).error === "NETWORK_ERROR") {
+          setError("خطای شبکه. لطفاً اتصال اینترنت خود را بررسی کنید.");
+        } else if (resp.message) {
+          setError(resp.message);
+        } else {
+          setError("فعلاً سرور تحلیل شلوغه—کمی بعد دوباره تلاش کن.");
+        }
       }
     } catch (error) {
       console.error("خطا در ارسال درخواست:", error);
@@ -107,12 +108,12 @@ export default function IntakeForm({ onAnalysis }: Props) {
     }
   };
 
-      return (
+  return (
     <motion.form onSubmit={handleSubmit} className="space-y-6" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
       {error && (
         <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-red-200" role="alert">
           {error}
-          </div>
+        </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -160,7 +161,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
           <div className="flex flex-wrap gap-2">
             {["وب‌سایت","اینستاگرام","تلگرام","واتساپ","ایمیل","فیزیکی"].map(ch => {
               const active = form.channels.includes(ch);
-    return (
+              return (
                 <button
                   key={ch}
                   type="button"
@@ -180,7 +181,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
         <div>
           <label className="block mb-2">شماره تماس</label>
           <input className="w-full rounded-xl bg-transparent border p-3" dir="ltr" value={form.phone} onChange={e => update("phone", e.target.value)} />
-      </div>
+        </div>
         <div>
           <label className="block mb-2">ایمیل</label>
           <input className="w-full rounded-xl bg-transparent border p-3" dir="ltr" type="email" value={form.email} onChange={e => update("email", e.target.value)} />
@@ -198,9 +199,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
           )}
           {loading ? "در حال ارسال به n8n و دریافت تحلیل…" : "دریافت تحلیل هوشمند"}
         </button>
-            </div>
-      </motion.form>
+      </div>
+    </motion.form>
   );
 }
-
-
