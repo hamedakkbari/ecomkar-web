@@ -108,12 +108,12 @@ export default function IntakeForm({ onAnalysis }: Props) {
     }
   };
 
-  return (
+      return (
     <motion.form onSubmit={handleSubmit} className="space-y-6" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
       {error && (
         <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-red-200" role="alert">
           {error}
-        </div>
+          </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -161,7 +161,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
           <div className="flex flex-wrap gap-2">
             {["وب‌سایت","اینستاگرام","تلگرام","واتساپ","ایمیل","فیزیکی"].map(ch => {
               const active = form.channels.includes(ch);
-              return (
+    return (
                 <button
                   key={ch}
                   type="button"
@@ -181,7 +181,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
         <div>
           <label className="block mb-2">شماره تماس</label>
           <input className="w-full rounded-xl bg-transparent border p-3" dir="ltr" value={form.phone} onChange={e => update("phone", e.target.value)} />
-        </div>
+      </div>
         <div>
           <label className="block mb-2">ایمیل</label>
           <input className="w-full rounded-xl bg-transparent border p-3" dir="ltr" type="email" value={form.email} onChange={e => update("email", e.target.value)} />
@@ -199,7 +199,9 @@ export default function IntakeForm({ onAnalysis }: Props) {
           )}
           {loading ? "در حال ارسال به n8n و دریافت تحلیل…" : "دریافت تحلیل هوشمند"}
         </button>
-      </div>
-    </motion.form>
+            </div>
+      </motion.form>
   );
 }
+
+

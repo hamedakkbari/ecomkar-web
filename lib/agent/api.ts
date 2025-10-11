@@ -3,7 +3,7 @@ import type { AgentResponse, IntakePayload, ChatMessagePayload } from "./types";
 async function postJson<T>(url: string, payload: any): Promise<T> {
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout for n8n
     
     const res = await fetch(url, {
       method: "POST",
@@ -30,7 +30,7 @@ async function postJson<T>(url: string, payload: any): Promise<T> {
   } catch (e) {
     console.error("Network error:", e);
     if (e instanceof Error && e.name === 'AbortError') {
-      return { ok: false, error: "TIMEOUT", message: "زمان انتظار به پایان رسید. لطفاً دوباره تلاش کنید." } as unknown as T;
+      return { ok: false, error: "TIMEOUT", message: "زمان انتظار به پایان رسید. n8n کمی دیر پاسخ داد. لطفاً دوباره تلاش کنید." } as unknown as T;
     }
     return { ok: false, error: "NETWORK_ERROR", message: "خطای شبکه. لطفاً اتصال اینترنت خود را بررسی کنید." } as unknown as T;
   }
