@@ -143,8 +143,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     
     let initialAnalysis: any = undefined;
     if (isWebhookEnabled(webhookUrl)) {
-      // Send to n8n webhook
-      const webhookResult = await sendToWebhook(webhookUrl!, webhookPayload);
+      // Send to n8n webhook with increased timeout and retries
+      const webhookResult = await sendToWebhook(webhookUrl!, webhookPayload, {
+        timeoutMs: 30000, // 30 seconds
+        retries: 2, // Try 3 times total
+        backoffMs: 1000 // Wait 1 second between retries
+      });
       
       if (!webhookResult.success) {
         const duration = Date.now() - startTime;

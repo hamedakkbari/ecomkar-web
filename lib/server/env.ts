@@ -209,7 +209,7 @@ function validateEnv(): ServerEnv {
     // API Infrastructure
     RATE_LIMIT_WINDOW_MS: parsePositiveInt(process.env.RATE_LIMIT_WINDOW_MS, 60000),
     RATE_LIMIT_MAX: parsePositiveInt(process.env.RATE_LIMIT_MAX, 10),
-    API_TIMEOUT_MS: parsePositiveInt(process.env.API_TIMEOUT_MS, 3500),
+    API_TIMEOUT_MS: parsePositiveInt(process.env.API_TIMEOUT_MS, 30000),
     LOG_LEVEL: (process.env.LOG_LEVEL as LogLevel) || "info"
   };
 }

@@ -130,7 +130,8 @@ export async function fetchWithRetry(
 
 export async function sendToWebhook(
   webhookUrl: string,
-  payload: any
+  payload: any,
+  options?: Partial<FetchOptions>
 ): Promise<FetchResult> {
   if (!webhookUrl || webhookUrl.trim().length === 0) {
     return {
@@ -140,5 +141,5 @@ export async function sendToWebhook(
     };
   }
 
-  return fetchWithRetry(webhookUrl, { body: payload });
+  return fetchWithRetry(webhookUrl, { body: payload, ...options });
 }
