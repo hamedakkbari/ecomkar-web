@@ -8,10 +8,22 @@ async function postJson<T>(url: string, payload: any): Promise<T> {
       credentials: "omit",
       body: JSON.stringify(payload)
     });
+    
+    if (!res.ok) {
+      console.error(`API Error: ${res.status} ${res.statusText}`);
+      const errorData = await res.json().catch(() => ({}));
+      return { 
+        ok: false, 
+        error: errorData.error || "API_ERROR",
+        message: errorData.message || `خطای ${res.status}: ${res.statusText}`
+      } as unknown as T;
+    }
+    
     const data = await res.json().catch(() => ({}));
     return data as T;
   } catch (e) {
-    return { ok: false, message: "network_error" } as unknown as T;
+    console.error("Network error:", e);
+    return { ok: false, error: "NETWORK_ERROR", message: "خطای شبکه. لطفاً اتصال اینترنت خود را بررسی کنید." } as unknown as T;
   }
 }
 

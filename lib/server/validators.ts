@@ -321,7 +321,7 @@ export function validateNewSessionInput(data: any): ValidationResult {
 export interface ChatMessageInput {
   session_id: string;
   message: string;
-  hp_token: string;
+  hp_token?: string;
   utm?: Record<string, string>;
 }
 
@@ -342,8 +342,8 @@ export function validateChatMessageInput(data: any): ValidationResult {
     errors.push({ field: "message", message: "پیام نباید بیش از ۸۰۰ کاراکتر باشد." });
   }
 
-  // Honeypot must be empty
-  if (data.hp_token && data.hp_token.trim() !== "") {
+  // Honeypot must be empty (optional field)
+  if (data.hp_token && typeof data.hp_token === "string" && data.hp_token.trim() !== "") {
     errors.push({ field: "hp_token", message: "فیلد مخفی نباید پر باشد." });
   }
 

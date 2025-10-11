@@ -65,7 +65,14 @@ export default function IntakeForm({ onAnalysis }: Props) {
     const resp = await submitIntake(payload);
     console.log("Agent response:", resp); // Debug log
     if (resp.ok) {
-      onAnalysis(resp);
+      // Handle different response formats
+      const analysisData = resp.analysis || resp;
+      onAnalysis({
+        ok: true,
+        analysis: analysisData,
+        reply: resp.reply || resp.text || analysisData?.summary,
+        text: resp.text || resp.reply || analysisData?.summary
+      });
     } else {
       if (resp.fields && Object.keys(resp.fields).length > 0) {
         const first = Object.values(resp.fields)[0];
