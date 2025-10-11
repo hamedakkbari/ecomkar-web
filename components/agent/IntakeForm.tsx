@@ -49,63 +49,65 @@ export default function IntakeForm({ onAnalysis }: Props) {
 
     setLoading(true);
     console.log("Starting analysis request..."); // Debug log
-    const payload: IntakePayload = {
-      website_url: form.website_url?.trim(),
-      instagram_url: normalizeInstagram(form.instagram),
-      business_type: form.business_type,
-      primary_goal: form.primary_goal,
-      channels: form.channels,
-      current_tools: Array.isArray(form.current_tools) ? form.current_tools.join(", ") : (form.current_tools as unknown as string),
-      budget: form.budget,
-      phone: form.phone?.trim(),
-      email: form.email.trim(),
-      consent: !!form.consent,
-      hp_token: ""
-    };
+    
+    try {
+      const payload: IntakePayload = {
+        website_url: form.website_url?.trim(),
+        instagram_url: normalizeInstagram(form.instagram),
+        business_type: form.business_type,
+        primary_goal: form.primary_goal,
+        channels: form.channels,
+        current_tools: Array.isArray(form.current_tools) ? form.current_tools.join(", ") : (form.current_tools as unknown as string),
+        budget: form.budget,
+        phone: form.phone?.trim(),
+        email: form.email.trim(),
+        consent: !!form.consent,
+        hp_token: ""
+      };
 
-    // Add timeout for frontend request
-    const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error("Request timeout")), 35000); // 35 seconds
-    });
-    
-    const resp = await Promise.race([
-      submitIntake(payload),
-      timeoutPromise
-    ]) as any;
-    
-    console.log("Agent response:", resp); // Debug log
-    if (resp.ok) {
-      onAnalysis(resp);
-    } else {
-      if (resp.fields && Object.keys(resp.fields).length > 0) {
-        const first = Object.values(resp.fields)[0];
-        setError(first);
-      } else if ((resp as any).error === "POTENTIAL_SPAM") {
-        setError("درخواست شما به‌طور موقت مسدود شد — لطفاً صحت اطلاعات را بررسی کنید یا کمی بعد دوباره تلاش کنید.");
-      } else if ((resp as any).error === "UPSTREAM_UNAVAILABLE") {
-        setError("خدمت تحلیل در دسترس نیست. لطفاً کمی بعد دوباره تلاش کنید.");
-      } else if ((resp as any).error === "RATE_LIMITED") {
-        setError("محدودیت سرعت موقتاً اعمال شده است. کمی بعد دوباره تلاش کنید.");
-      } else if ((resp as any).error === "SERVER_ERROR") {
-        setError("خطای داخلی سرور رخ داد. کمی بعد دوباره تلاش کنید.");
-      } else if ((resp as any).error === "INVALID_INPUT") {
-        setError("برخی مقادیر فرم نامعتبر است. لطفاً فیلدها را بررسی کنید.");
-      } else if (resp.message) {
-        setError(resp.message);
+      // Add timeout for frontend request
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Request timeout")), 35000); // 35 seconds
+      });
+      
+      const resp = await Promise.race([
+        submitIntake(payload),
+        timeoutPromise
+      ]) as any;
+      
+      console.log("Agent response:", resp); // Debug log
+      if (resp.ok) {
+        onAnalysis(resp);
       } else {
-        setError("فعلاً سرور تحلیل شلوغه—کمی بعد دوباره تلاش کن.");
+        if (resp.fields && Object.keys(resp.fields).length > 0) {
+          const first = Object.values(resp.fields)[0];
+          setError(first);
+        } else if ((resp as any).error === "POTENTIAL_SPAM") {
+          setError("درخواست شما به‌طور موقت مسدود شد — لطفاً صحت اطلاعات را بررسی کنید یا کمی بعد دوباره تلاش کنید.");
+        } else if ((resp as any).error === "UPSTREAM_UNAVAILABLE") {
+          setError("خدمت تحلیل در دسترس نیست. لطفاً کمی بعد دوباره تلاش کنید.");
+        } else if ((resp as any).error === "RATE_LIMITED") {
+          setError("محدودیت سرعت موقتاً اعمال شده است. کمی بعد دوباره تلاش کنید.");
+        } else if ((resp as any).error === "SERVER_ERROR") {
+          setError("خطای داخلی سرور رخ داد. کمی بعد دوباره تلاش کنید.");
+        } else if ((resp as any).error === "INVALID_INPUT") {
+          setError("برخی مقادیر فرم نامعتبر است. لطفاً فیلدها را بررسی کنید.");
+        } else if (resp.message) {
+          setError(resp.message);
+        } else {
+          setError("فعلاً سرور تحلیل شلوغه—کمی بعد دوباره تلاش کن.");
+        }
       }
+    } catch (error) {
+      console.error("Analysis request failed:", error);
+      if (error instanceof Error && error.message === "Request timeout") {
+        setError("درخواست تحلیل زمان زیادی طول کشید. لطفاً دوباره تلاش کنید.");
+      } else {
+        setError("خطا در ارسال درخواست. لطفاً دوباره تلاش کنید.");
+      }
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
-  } catch (error) {
-    console.error("Analysis request failed:", error);
-    if (error instanceof Error && error.message === "Request timeout") {
-      setError("درخواست تحلیل زمان زیادی طول کشید. لطفاً دوباره تلاش کنید.");
-    } else {
-      setError("خطا در ارسال درخواست. لطفاً دوباره تلاش کنید.");
-    }
-    setLoading(false);
-  }
   };
 
       return (

@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   compress: true,
 
   // برای اجرا در سرور (Coolify)
-  output: 'standalone',
+  // output: 'standalone', // حذف شد برای جلوگیری از symlink issues
 
   // جلوی توقف بیلد به‌خاطر خطاهای ESLint/TS را می‌گیرد
   eslint: { ignoreDuringBuilds: true },
