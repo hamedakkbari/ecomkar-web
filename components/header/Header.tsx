@@ -129,37 +129,24 @@ export default function Header() {
         }`}>
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between">
-              {/* Logo & Status Pill */}
+              {/* Logo */}
               <div className="flex items-center gap-4 shrink-0">
                 <Link href="/" aria-label="EcomKar" className="flex items-center gap-3">
                   <div className="relative shrink-0">
                     <Logo className="!h-12 md:!h-14 !w-auto" />
                     <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50" />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div 
-                      className="px-3 py-1 rounded-full"
-                      style={{
-                        background: 'linear-gradient(135deg, rgba(0, 255, 163, 0.2), rgba(0, 229, 255, 0.2))',
-                        border: '1px solid var(--accent-green)',
-                        borderRadius: 'var(--radius-control)'
-                      }}
-                    >
-                      <div className="flex items-center gap-2">
-                        <div 
-                          className="w-2 h-2 rounded-full animate-pulse"
-                          style={{ background: 'var(--accent-green)' }}
-                        />
-                        <span 
-                          className="text-xs font-medium"
-                          style={{ color: 'var(--accent-green)' }}
-                        >
-                          دموی ایجنت
-                        </span>
-                      </div>
-                    </div>
+                  <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mt-2 lg:block hidden animate-gradient-x">
+                    EcomKar
                   </div>
                 </Link>
+              </div>
+
+              {/* Mobile Logo Text - Centered */}
+              <div className="lg:hidden flex-1 flex justify-center">
+                <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-gradient-x">
+                  EcomKar
+                </div>
               </div>
 
               {/* Desktop Navigation */}
@@ -192,7 +179,7 @@ export default function Header() {
                   className="px-6 py-2 font-medium rounded-xl transition-all duration-200 shadow-lg btn-primary"
                   data-analytics="cta_demo_header"
                 >
-                  دموی ایجنت
+                  ایجنت معمار
                 </Link>
               </div>
 

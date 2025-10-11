@@ -120,7 +120,7 @@ export const commandPaletteActions = [
   {
     id: 'meeting',
     label: 'درخواست جلسه',
-    description: 'رزرو جلسه مشاوره رایگان',
+    description: 'رزرو جلسه مشاوره',
     href: '/contact',
     icon: 'Calendar',
     analytics: 'cmdk_action_meeting'

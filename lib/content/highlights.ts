@@ -51,8 +51,8 @@ export const highlightsContent: HighlightsContent = {
     }
   ],
   microCta: {
-    text: "بیشتر بدانید",
-    href: "/services"
+    text: "",
+    href: ""
   }
 };
 

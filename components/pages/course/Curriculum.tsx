@@ -107,7 +107,7 @@ export default function Curriculum({ modules }: CurriculumProps) {
                             </span>
                             {lesson.free && (
                               <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">
-                                رایگان
+                                هوشمند
                               </span>
                             )}
                           </div>

@@ -107,37 +107,39 @@ export default function Hero() {
       <div className="relative z-0 container mx-auto px-4 max-w-screen-xl xl:max-w-[1400px]">
         <div className="max-w-[780px] md:max-w-none mx-auto text-right">
           
-          {/* Welcome Typed Line */}
+          {/* Welcome Typed Line - Clickable */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <div 
-              className="inline-flex items-center gap-2 px-4 py-2 backdrop-blur-sm rounded-full text-sm"
+            <Link
+              href="/agent"
+              className="inline-flex items-center gap-2 px-4 py-2 backdrop-blur-sm rounded-full text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg group cursor-pointer"
               style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid var(--border)',
                 borderRadius: 'var(--radius-control)',
                 color: 'var(--text-primary)'
               }}
+              data-analytics="click_agent_pill_hero"
             >
               <div 
                 className="w-2 h-2 rounded-full animate-pulse"
                 style={{ background: 'var(--accent-green)' }}
               />
-              <span className="font-medium">
+              <span className="font-medium group-hover:text-cyan-300 transition-colors duration-200">
                 {isTypingComplete ? (
-                  'سلام، من ایجنت ایکام‌کارم—می‌خوای همین الان کسب‌وکارت رو تحلیل کنم؟'
+                  'سلام، من ایجنت ایکام‌کارم — این فقط شروع یه گفت‌وگو نیست، نقطه‌ی آغاز عصر هوشمندسازی کسب‌وکار توئه'
                 ) : (
                   <span className="inline-block">
-                    سلام، من ایجنت ایکام‌کارم—می‌خوای همین الان کسب‌وکارت رو تحلیل کنم؟
+                    سلام، من ایجنت ایکام‌کارم — این فقط شروع یه گفت‌وگو نیست، نقطه‌ی آغاز عصر هوشمندسازی کسب‌وکار توئه
                     <span className="animate-pulse">|</span>
                   </span>
                 )}
               </span>
-            </div>
+            </Link>
           </motion.div>
 
           {/* Main Heading */}

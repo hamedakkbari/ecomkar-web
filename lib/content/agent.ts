@@ -137,7 +137,7 @@ export const agentContent = {
       plan: "برنامه اجرایی"
     },
     ctas: {
-      meeting: { label: "جلسه مشاوره رایگان", href: "/contact" },
+      meeting: { label: "جلسه مشاوره", href: "/contact" },
       checkout: { label: "درخواست پیاده‌سازی", href: "/checkout" }
     }
   },

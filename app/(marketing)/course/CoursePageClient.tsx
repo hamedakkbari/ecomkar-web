@@ -331,7 +331,7 @@ export default function CoursePageClient() {
                     </div>
                     <div className="grid grid-cols-12 text-sm">
                       <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">8</div>
-                      <div className="col-span-5 px-3 py-3 text-gray-100">نصب n8n رایگان و سرور ابری</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">نصب n8n و سرور ابری</div>
                       <div className="col-span-5 px-3 py-3 text-gray-300/95">راه‌اندازی n8n روی سرور اختصاصی (Cloud)</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">

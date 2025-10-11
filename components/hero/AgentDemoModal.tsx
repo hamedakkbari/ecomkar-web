@@ -140,7 +140,7 @@ export default function AgentDemoModal({
                 <div className="text-center mb-6">
                   <Sparkles className="w-12 h-12 text-blue-400 mx-auto mb-3" />
                   <h3 className="text-lg font-semibold text-white mb-2">
-                    تحلیل رایگان کسب‌وکار شما
+                    تحلیل هوشمند کسب‌وکار شما
                   </h3>
                   <p className="text-white/70">
                     اطلاعات خود را وارد کنید تا ایجنت هوشمند تحلیل کاملی ارائه دهد

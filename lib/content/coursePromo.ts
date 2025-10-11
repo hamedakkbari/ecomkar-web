@@ -67,6 +67,6 @@ export const coursePromoContent: CoursePromoContent = {
     label: "سرفصل‌ها و جزئیات",
     href: "/course#curriculum"
   },
-  microCopy: "دسترسی دائمی + آپدیت‌های رایگان"
+  microCopy: "دسترسی دائمی + آپدیت‌های مداوم"
 };
 

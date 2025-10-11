@@ -192,7 +192,7 @@ export function generateContactMeta(): Metadata {
  */
 export function generatePageMetaFromContent(content?: { seo?: { title?: string; description?: string; image?: string } }): Metadata {
   const title = content?.seo?.title || "دموی تحلیل وب‌سایت - EcomKar";
-  const description = content?.seo?.description || "تحلیل رایگان وب‌سایت شما با AI. دریافت گزارش کامل از فرصت‌های بهبود SEO، UX و تبدیل.";
+  const description = content?.seo?.description || "تحلیل هوشمند وب‌سایت شما با AI. دریافت گزارش کامل از فرصت‌های بهبود SEO، UX و تبدیل.";
   const image = content?.seo?.image;
 
   return generatePageMeta({

@@ -48,7 +48,7 @@ export const faqContent: FAQContent = {
     {
       key: "course",
       q: "آیا دورهٔ آموزشی هم دارید؟",
-      a: "بله، «دورهٔ ساخت AI Agent» با دسترسی دائمی و آپدیت رایگان—جزئیات در بخش Course."
+      a: "بله، «دورهٔ ساخت AI Agent» با دسترسی دائمی و آپدیت‌های مداوم—جزئیات در بخش Course."
     }
   ],
   microCta: { 

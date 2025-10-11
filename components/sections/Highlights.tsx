@@ -86,23 +86,25 @@ export default function Highlights() {
           ))}
         </motion.div>
 
-        {/* Micro CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center"
-        >
-          <Link
-            href={highlightsContent.microCta.href}
-            className="inline-flex items-center gap-2 px-6 py-3 font-medium transition-all duration-300 hover:shadow-lg group btn-ghost"
-            data-analytics="click_highlights_all_services"
-            aria-label="مشاهده همه خدمات"
+        {/* Micro CTA - Only show if text is not empty */}
+        {highlightsContent.microCta.text && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-center"
           >
-            <span>{highlightsContent.microCta.text}</span>
-            <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-200" />
-          </Link>
-        </motion.div>
+            <Link
+              href={highlightsContent.microCta.href}
+              className="inline-flex items-center gap-2 px-6 py-3 font-medium transition-all duration-300 hover:shadow-lg group btn-ghost"
+              data-analytics="click_highlights_all_services"
+              aria-label="مشاهده همه خدمات"
+            >
+              <span>{highlightsContent.microCta.text}</span>
+              <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-200" />
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   );

@@ -23,7 +23,7 @@ export default function AgentDock({}: AgentDockProps) {
   const actions = [
     {
       id: 'chat',
-      label: 'چت آنلاین',
+      label: 'ایجنت کسب‌وکار',
       icon: Bot,
       description: 'گفتگو با ایجنت و دریافت پاسخ سریع',
       analytics: 'open_agent_chat'

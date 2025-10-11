@@ -68,7 +68,7 @@ export default function CourseHero({
                 </div>
                 <div className="flex items-center gap-1">
                   <Users className="w-4 h-4" />
-                  <span>آپدیت‌های رایگان</span>
+                  <span>آپدیت‌های مداوم</span>
                 </div>
               </div>
             )}
