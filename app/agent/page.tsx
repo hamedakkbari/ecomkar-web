@@ -31,11 +31,11 @@ export default function AgentIntakePage() {
             <span className="text-cyan-300 text-sm font-medium">مشاور هوشمند EcomKar</span>
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent text-center">
             تحلیل فوری کسب‌وکار شما
           </h1>
           
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 leading-relaxed text-center">
             اطلاعات کلیدی را وارد کنید تا ایجنت‌های مناسب را دقیق پیشنهاد دهیم و 
             <span className="text-cyan-300 font-semibold"> راهکارهای عملی</span> برای رشد کسب‌وکارتان ارائه دهیم
           </p>
@@ -103,7 +103,7 @@ export default function AgentIntakePage() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold mb-4">آماده برای تحلیل هوشمند؟</h3>
-              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              <p className="text-gray-300 mb-6 text-center">
                 فرم بالا را پر کنید تا تحلیل کاملی از کسب‌وکارتان دریافت کنید و 
                 راهکارهای عملی برای رشد آن را ببینید.
               </p>

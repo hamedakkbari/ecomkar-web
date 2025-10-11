@@ -36,7 +36,7 @@ export default function AnalysisCards({ analysis }: Props) {
             </div>
             <div className="text-gray-200 leading-relaxed whitespace-pre-wrap">{summary}</div>
           </div>
-        </motion.div>
+      </motion.div>
       )}
 
       {/* Agents/Recommendations Section */}
@@ -48,7 +48,7 @@ export default function AnalysisCards({ analysis }: Props) {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {agents.map((a, idx) => (
+          {agents.map((a, idx) => (
               <motion.div 
                 key={a.name + idx} 
                 initial={{ opacity: 0, y: 20 }} 
@@ -99,7 +99,7 @@ export default function AnalysisCards({ analysis }: Props) {
                           {a.complexity === 'low' ? 'پایین' : a.complexity === 'medium' ? 'متوسط' : 'بالا'}
                         </span>
                       </div>
-                    </div>
+              </div>
                     
                     {a.kpis && a.kpis.length > 0 && (
                       <div>
@@ -109,14 +109,14 @@ export default function AnalysisCards({ analysis }: Props) {
                             <span key={i} className="text-xs bg-blue-500/10 text-blue-300 px-2 py-1 rounded-full">
                               {kpi}
                             </span>
-                          ))}
-                        </div>
+                ))}
+              </div>
                       </div>
                     )}
                   </div>
                 </div>
-              </motion.div>
-            ))}
+            </motion.div>
+          ))}
           </div>
         </div>
       )}

@@ -51,19 +51,19 @@ export default function IntakeForm({ onAnalysis }: Props) {
     console.log("Starting analysis request..."); // Debug log
     
     try {
-      const payload: IntakePayload = {
-        website_url: form.website_url?.trim(),
-        instagram_url: normalizeInstagram(form.instagram),
-        business_type: form.business_type,
-        primary_goal: form.primary_goal,
-        channels: form.channels,
-        current_tools: Array.isArray(form.current_tools) ? form.current_tools.join(", ") : (form.current_tools as unknown as string),
-        budget: form.budget,
-        phone: form.phone?.trim(),
-        email: form.email.trim(),
-        consent: !!form.consent,
-        hp_token: ""
-      };
+    const payload: IntakePayload = {
+      website_url: form.website_url?.trim(),
+      instagram_url: normalizeInstagram(form.instagram),
+      business_type: form.business_type,
+      primary_goal: form.primary_goal,
+      channels: form.channels,
+      current_tools: Array.isArray(form.current_tools) ? form.current_tools.join(", ") : (form.current_tools as unknown as string),
+      budget: form.budget,
+      phone: form.phone?.trim(),
+      email: form.email.trim(),
+      consent: !!form.consent,
+      hp_token: ""
+    };
 
       // Add timeout for frontend request
       const timeoutPromise = new Promise((_, reject) => {
@@ -76,28 +76,28 @@ export default function IntakeForm({ onAnalysis }: Props) {
       ]) as any;
       
       console.log("Agent response:", resp); // Debug log
-      if (resp.ok) {
-        onAnalysis(resp);
+    if (resp.ok) {
+      onAnalysis(resp);
+    } else {
+      if (resp.fields && Object.keys(resp.fields).length > 0) {
+        const first = Object.values(resp.fields)[0];
+        setError(first);
+      } else if ((resp as any).error === "POTENTIAL_SPAM") {
+        setError("درخواست شما به‌طور موقت مسدود شد — لطفاً صحت اطلاعات را بررسی کنید یا کمی بعد دوباره تلاش کنید.");
+      } else if ((resp as any).error === "UPSTREAM_UNAVAILABLE") {
+        setError("خدمت تحلیل در دسترس نیست. لطفاً کمی بعد دوباره تلاش کنید.");
+      } else if ((resp as any).error === "RATE_LIMITED") {
+        setError("محدودیت سرعت موقتاً اعمال شده است. کمی بعد دوباره تلاش کنید.");
+      } else if ((resp as any).error === "SERVER_ERROR") {
+        setError("خطای داخلی سرور رخ داد. کمی بعد دوباره تلاش کنید.");
+      } else if ((resp as any).error === "INVALID_INPUT") {
+        setError("برخی مقادیر فرم نامعتبر است. لطفاً فیلدها را بررسی کنید.");
+      } else if (resp.message) {
+        setError(resp.message);
       } else {
-        if (resp.fields && Object.keys(resp.fields).length > 0) {
-          const first = Object.values(resp.fields)[0];
-          setError(first);
-        } else if ((resp as any).error === "POTENTIAL_SPAM") {
-          setError("درخواست شما به‌طور موقت مسدود شد — لطفاً صحت اطلاعات را بررسی کنید یا کمی بعد دوباره تلاش کنید.");
-        } else if ((resp as any).error === "UPSTREAM_UNAVAILABLE") {
-          setError("خدمت تحلیل در دسترس نیست. لطفاً کمی بعد دوباره تلاش کنید.");
-        } else if ((resp as any).error === "RATE_LIMITED") {
-          setError("محدودیت سرعت موقتاً اعمال شده است. کمی بعد دوباره تلاش کنید.");
-        } else if ((resp as any).error === "SERVER_ERROR") {
-          setError("خطای داخلی سرور رخ داد. کمی بعد دوباره تلاش کنید.");
-        } else if ((resp as any).error === "INVALID_INPUT") {
-          setError("برخی مقادیر فرم نامعتبر است. لطفاً فیلدها را بررسی کنید.");
-        } else if (resp.message) {
-          setError(resp.message);
-        } else {
-          setError("فعلاً سرور تحلیل شلوغه—کمی بعد دوباره تلاش کن.");
-        }
+        setError("فعلاً سرور تحلیل شلوغه—کمی بعد دوباره تلاش کن.");
       }
+    }
     } catch (error) {
       console.error("Analysis request failed:", error);
       if (error instanceof Error && error.message === "Request timeout") {
@@ -106,7 +106,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
         setError("خطا در ارسال درخواست. لطفاً دوباره تلاش کنید.");
       }
     } finally {
-      setLoading(false);
+    setLoading(false);
     }
   };
 
@@ -118,7 +118,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span>{error}</span>
-        </div>
+          </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
@@ -190,7 +190,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
           <div className="flex flex-wrap gap-3">
             {["وب‌سایت","اینستاگرام","تلگرام","واتساپ","ایمیل","فیزیکی"].map(ch => {
               const active = form.channels.includes(ch);
-              return (
+    return (
                 <button
                   key={ch}
                   type="button"
@@ -225,7 +225,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
             value={form.phone} 
             onChange={e => update("phone", e.target.value)} 
           />
-        </div>
+      </div>
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-300">ایمیل</label>
           <input 
@@ -277,7 +277,7 @@ export default function IntakeForm({ onAnalysis }: Props) {
             )}
           </div>
         </button>
-      </div>
+            </div>
       </motion.form>
   );
 }
