@@ -26,11 +26,6 @@ export interface Message {
   role: "user" | "assistant";
   content: string;
   timestamp: string;
-  blocks?: {
-    summary?: string;
-    agents?: any[];
-    next_actions?: string[];
-  };
 }
 
 export interface AgentReply {
