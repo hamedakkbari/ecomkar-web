@@ -131,7 +131,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       session_id: body.session_id,
       message: body.message,
       context: {
-        intake: session.intake,
+        intake: {
+          ...session.intake,
+          session_id: body.session_id
+        },
         history: session.messages.slice(-10) // Last 10 messages for context
       },
       system_prompt: SYSTEM_PROMPT,
@@ -154,7 +157,19 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       const webhookResult = await sendToWebhook(webhookUrl, webhookPayload);
       
       if (webhookResult.success) {
-        const agentReply = webhookResult.data;
+        let agentReply = webhookResult.data;
+        
+        // Handle n8n response format: [{"output": "json_string"}]
+        if (Array.isArray(agentReply) && agentReply.length > 0 && agentReply[0].output) {
+          try {
+            agentReply = JSON.parse(agentReply[0].output);
+          } catch (e) {
+            logger.warn(route, ipHash, userAgent, Date.now() - startTime, 200, "Failed to parse n8n output", {
+              error: e instanceof Error ? e.message : "Unknown error",
+              rawOutput: agentReply[0].output
+            });
+          }
+        }
         
         // Handle different response formats from n8n
         const replyText = agentReply.reply || agentReply.text || agentReply.message || agentReply.analysis?.summary || "";

@@ -124,7 +124,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Prepare webhook payload
     const webhookPayload = {
       type: "agent_new_session",
-      data: body as NewSessionRequest,
+      data: {
+        ...body as NewSessionRequest,
+        session_id: sessionId
+      },
       session_id: sessionId,
       meta: {
         ip: realIP,
@@ -162,7 +165,20 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         // Pass through any analysis-like payload from n8n if present
         if (webhookResult.data) {
           // Handle different response formats from n8n
-          const data = webhookResult.data;
+          let data = webhookResult.data;
+          
+          // Handle n8n response format: [{"output": "json_string"}]
+          if (Array.isArray(data) && data.length > 0 && data[0].output) {
+            try {
+              data = JSON.parse(data[0].output);
+            } catch (e) {
+              logger.warn(route, ipHash, userAgent, Date.now() - startTime, 200, "Failed to parse n8n output", {
+                error: e instanceof Error ? e.message : "Unknown error",
+                rawOutput: data[0].output
+              });
+            }
+          }
+          
           initialAnalysis = {
             analysis: data.analysis || data,
             blocks: data.blocks,
