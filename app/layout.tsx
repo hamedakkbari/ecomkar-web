@@ -55,7 +55,9 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <head>
-        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="icon" href="/media/logo.svg?v=2" type="image/svg+xml" />
+        <link rel="icon" href="/logo.png?v=2" type="image/png" sizes="32x32" />
+        <link rel="shortcut icon" href="/logo.png?v=2" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="theme-color" content="#0B0F14" />
