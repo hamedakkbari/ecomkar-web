@@ -166,7 +166,7 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 #### Required Images:
 - **OG Image**: `/public/og.png` (1200x630px)
 - **Logo**: `/public/logo.svg` (vector format)
-- **Favicon**: `/app/icon.png` (256x256px)
+- **Favicon**: `/public/logo.png` (256x256px)
 - **Apple Touch Icon**: `/app/apple-touch-icon.png` (180x180px)
 
 #### Image Optimization:
