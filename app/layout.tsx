@@ -29,6 +29,11 @@ export const metadata: Metadata = {
     template: "%s — EcomKar" 
   },
   description: "ایجنت‌های هوشمند برای رشد فروش، اتوماسیون و مقیاس‌پذیری.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png"
+  },
   openGraph: {
     type: "website",
     siteName: "EcomKar",
