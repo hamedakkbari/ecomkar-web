@@ -30,9 +30,13 @@ export const metadata: Metadata = {
   },
   description: "ایجنت‌های هوشمند برای رشد فروش، اتوماسیون و مقیاس‌پذیری.",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png"
+    icon: [
+      { url: "/logo.png?v=3", type: "image/png", sizes: "32x32" },
+      { url: "/logo.png?v=3", type: "image/png", sizes: "192x192" },
+      { url: "/logo.png?v=3", type: "image/png", sizes: "512x512" }
+    ],
+    shortcut: "/logo.png?v=3",
+    apple: "/logo.png?v=3"
   },
   openGraph: {
     type: "website",
@@ -60,7 +64,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <head>
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/logo.png?v=3" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="theme-color" content="#0B0F14" />
