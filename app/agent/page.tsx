@@ -49,7 +49,7 @@ export default function AgentIntakePage() {
           transition={{ delay: 0.2 }}
           className="mb-16"
         >
-          <Glow>
+        <Glow>
             <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl p-8 shadow-2xl">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">

@@ -271,35 +271,35 @@ export default function CoursePageClient() {
 
                 <div className="overflow-hidden rounded-xl border border-white/10">
                   <div className="grid grid-cols-12 text-sm bg-white/[0.04]">
-                    <div className="col-span-2 px-3 py-3 text-gray-300/90 w-[3cm] text-center">ماژول</div>
-                    <div className="col-span-3 px-3 py-3 text-gray-300/90">عنوان</div>
-                    <div className="col-span-7 px-3 py-3 text-gray-300/90">خروجی یادگیری</div>
+                    <div className="col-span-2 px-3 py-3 text-gray-300/90 md:w-[3cm] w-12 text-center">ماژول</div>
+                    <div className="col-span-5 px-3 py-3 text-gray-300/90">عنوان</div>
+                    <div className="col-span-5 px-3 py-3 text-gray-300/90">خروجی یادگیری</div>
                   </div>
                   <div className="divide-y divide-white/10">
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">1</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">تاریخچه و مسیر رشد AI</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">شناخت مسیر تکامل از هوش مصنوعی کلاسیک تا Agentic AI</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">1</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">تاریخچه و مسیر رشد AI</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">شناخت مسیر تکامل از هوش مصنوعی کلاسیک تا Agentic AI</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">2</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">آموزش مدل‌های هوش مصنوعی</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">درک مدل‌های LLM و نقش آن‌ها در اتوماسیون</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">2</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">آموزش مدل‌های هوش مصنوعی</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">درک مدل‌های LLM و نقش آن‌ها در اتوماسیون</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">3</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">تفاوت انواع آموزش‌ها (Supervised, Unsupervised, Reinforcement, RLHF)</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">یادگیری روش‌های تربیت مدل‌های هوشمند</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">3</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">تفاوت انواع آموزش‌ها (Supervised, Unsupervised, Reinforcement, RLHF)</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">یادگیری روش‌های تربیت مدل‌های هوشمند</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">4</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">آشنایی با JSON و Data Basics</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">شناخت ساختار داده‌ها برای ارتباط بین سیستم‌ها</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">4</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">آشنایی با JSON و Data Basics</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">شناخت ساختار داده‌ها برای ارتباط بین سیستم‌ها</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">5</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">آشنایی با API</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">یادگیری اصول اتصال سیستم‌ها و فراخوانی مدل‌ها</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">5</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">آشنایی با API</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">یادگیری اصول اتصال سیستم‌ها و فراخوانی مدل‌ها</div>
                     </div>
                   </div>
                 </div>
@@ -314,45 +314,45 @@ export default function CoursePageClient() {
                 <p className="text-gray-300/95 mb-6">هدف: تسلط کامل بر محیط n8n و ساخت گردش‌کارهای واقعی.</p>
                 <div className="overflow-hidden rounded-xl border border-white/10">
                   <div className="grid grid-cols-12 text-sm bg-white/[0.04]">
-                    <div className="col-span-2 px-3 py-3 text-gray-300/90 w-[3cm] text-center">ماژول</div>
-                    <div className="col-span-3 px-3 py-3 text-gray-300/90">عنوان</div>
-                    <div className="col-span-7 px-3 py-3 text-gray-300/90">خروجی یادگیری</div>
+                    <div className="col-span-2 px-3 py-3 text-gray-300/90 md:w-[3cm] w-12 text-center">ماژول</div>
+                    <div className="col-span-5 px-3 py-3 text-gray-300/90">عنوان</div>
+                    <div className="col-span-5 px-3 py-3 text-gray-300/90">خروجی یادگیری</div>
                   </div>
                   <div className="divide-y divide-white/10">
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">6</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">راه‌اندازی و آشنایی با محیط n8n</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">یادگیری کار با محیط و رابط گرافیکی n8n</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">6</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">راه‌اندازی و آشنایی با محیط n8n</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">یادگیری کار با محیط و رابط گرافیکی n8n</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">7</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">معرفی جامع Nodeها و عملکردشان</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">تسلط بر نودهای کلیدی و ساخت گردش‌کارها</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">7</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">معرفی جامع Nodeها و عملکردشان</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">تسلط بر نودهای کلیدی و ساخت گردش‌کارها</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">8</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">نصب n8n و سرور ابری</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">راه‌اندازی n8n روی سرور اختصاصی (Cloud)</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">8</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">نصب n8n و سرور ابری</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">راه‌اندازی n8n روی سرور اختصاصی (Cloud)</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">9</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">مفهوم Workflow و Nodeها</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">طراحی و اجرای سیستم‌های خودکار</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">9</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">مفهوم Workflow و Nodeها</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">طراحی و اجرای سیستم‌های خودکار</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">10</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">۴ روش دیتابیس Postgres برای حافظه ایجنت</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">ایجاد حافظه موقت، بلندمدت و ساخت ساختار Agent Memory</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">10</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">۴ روش دیتابیس Postgres برای حافظه ایجنت</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">ایجاد حافظه موقت، بلندمدت و ساخت ساختار Agent Memory</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">11</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">تعریف AI Agent و ساخت اولین اتوماسیون ساده</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">ساخت اولین ایجنت با داده واقعی برای اجرای وظایف</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">11</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">تعریف AI Agent و ساخت اولین اتوماسیون ساده</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">ساخت اولین ایجنت با داده واقعی برای اجرای وظایف</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">12</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ساخت گردش‌کار هوشمند با MCP | Workflow بدون کدنویسی</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">«Orchestration با MCP، ساخت جریان‌های کاری چندمدلی</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">12</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ساخت گردش‌کار هوشمند با MCP | Workflow بدون کدنویسی</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">«Orchestration با MCP، ساخت جریان‌های کاری چندمدلی</div>
                     </div>
                   </div>
                 </div>
@@ -367,90 +367,90 @@ export default function CoursePageClient() {
                 <p className="text-gray-300/95 mb-6">هدف: طراحی ایجنت‌های هوشمند در بسترهای مختلف برای اتوماسیون کامل بیزنس.</p>
                 <div className="overflow-hidden rounded-xl border border-white/10">
                   <div className="grid grid-cols-12 text-sm bg-white/[0.04]">
-                    <div className="col-span-2 px-3 py-3 text-gray-300/90 w-[3cm] text-center">ماژول</div>
-                    <div className="col-span-3 px-3 py-3 text-gray-300/90">عنوان</div>
-                    <div className="col-span-7 px-3 py-3 text-gray-300/90">خروجی یادگیری</div>
+                    <div className="col-span-2 px-3 py-3 text-gray-300/90 md:w-[3cm] w-12 text-center">ماژول</div>
+                    <div className="col-span-5 px-3 py-3 text-gray-300/90">عنوان</div>
+                    <div className="col-span-5 px-3 py-3 text-gray-300/90">خروجی یادگیری</div>
                   </div>
                   <div className="divide-y divide-white/10">
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">13</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">آشنایی با سیستم RAG و Vector Database</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">ساخت حافظه هوشمند برای پاسخ به داده‌های اختصاصی</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">13</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">آشنایی با سیستم RAG و Vector Database</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">ساخت حافظه هوشمند برای پاسخ به داده‌های اختصاصی</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">14</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">تنظیمات Google Cloud برای ابزارهای گوگل</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">اتصال به Gmail، Sheets، Docs و Drive</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">14</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">تنظیمات Google Cloud برای ابزارهای گوگل</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">اتصال به Gmail، Sheets، Docs و Drive</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">15</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت صدا به متن و متن به صدا</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">ساخت ایجنت‌های صوتی (Voice AI Agents)</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">15</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت صدا به متن و متن به صدا</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">ساخت ایجنت‌های صوتی (Voice AI Agents)</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">16</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت تلفنی با خطوط اپراتوری بین‌المللی</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">اجرای تماس تلفنی هوشمند با پاسخ خودکار</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">16</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت تلفنی با خطوط اپراتوری بین‌المللی</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">اجرای تماس تلفنی هوشمند با پاسخ خودکار</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">17</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت تلگرام: توسعه ربات‌های پیشرفته</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">طراحی Chatbot با تحلیل پیام، پاسخ هوشمند و APIهای خارجی</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">17</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت تلگرام: توسعه ربات‌های پیشرفته</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">طراحی Chatbot با تحلیل پیام، پاسخ هوشمند و APIهای خارجی</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">18</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت واتس‌اپ: ساخت چت‌بات تعاملی</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">ساخت سیستم پشتیبانی و فروش خودکار در واتس‌اپ</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">18</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت واتس‌اپ: ساخت چت‌بات تعاملی</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">ساخت سیستم پشتیبانی و فروش خودکار در واتس‌اپ</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">19</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت اینستاگرام: اتوماسیون پست، استوری و ریلز</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">ساخت سیستم انتشار خودکار و تعامل با مخاطب</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">19</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت اینستاگرام: اتوماسیون پست، استوری و ریلز</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">ساخت سیستم انتشار خودکار و تعامل با مخاطب</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">20</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت تحلیل کریپتو و بیت‌کوین (صفر تا صد)</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">«اتصال به API قیمت، تحلیل آموزشی </div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">20</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت تحلیل کریپتو و بیت‌کوین (صفر تا صد)</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">«اتصال به API قیمت، تحلیل آموزشی </div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">21</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت تولید محتوا کانال: بازنویسی و ترجمه خودکار</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">«Pipeline تولید/بازنویسی/ترجمه با LLM</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">21</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت تولید محتوا کانال: بازنویسی و ترجمه خودکار</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">«Pipeline تولید/بازنویسی/ترجمه با LLM</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">22</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت لینکدین: انتشار و تعامل هوشمند</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">ساخت ایجنت برای تولید محتوا و ارتباطات B2B</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">22</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت لینکدین: انتشار و تعامل هوشمند</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">ساخت ایجنت برای تولید محتوا و ارتباطات B2B</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">23</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت توییتر (X): مدیریت و تعامل خودکار</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">مدیریت حساب‌های X با توییت و ریتوییت هوشمند</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">23</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت توییتر (X): مدیریت و تعامل خودکار</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">مدیریت حساب‌های X با توییت و ریتوییت هوشمند</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">24</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت یوتیوب: ساخت و انتشار ویدیوهای اتوماتیک</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">تولید و آپلود خودکار ویدیو با API یوتیوب</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">24</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت یوتیوب: ساخت و انتشار ویدیوهای اتوماتیک</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">تولید و آپلود خودکار ویدیو با API یوتیوب</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">25</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت خزنده مقالات، قیمت ارز، طلا، کریپتو و...</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">جمع‌آوری و تحلیل داده‌های زنده از وب</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">25</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت خزنده مقالات، قیمت ارز، طلا، کریپتو و...</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">جمع‌آوری و تحلیل داده‌های زنده از وب</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">26</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ایجنت RAG: ساخت حافظه برداری برای اسناد</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">اتصال مستقیم به PDF و Docs برای پرسش از منابع اختصاصی</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">26</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ایجنت RAG: ساخت حافظه برداری برای اسناد</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">اتصال مستقیم به PDF و Docs برای پرسش از منابع اختصاصی</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
                       <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">27</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">ساخت نامحدود عکس و ویدیو با API</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">تولید محتوای تصویری و ویدیویی خودکار با مدل‌های GenAI</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">ساخت نامحدود عکس و ویدیو با API</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">تولید محتوای تصویری و ویدیویی خودکار با مدل‌های GenAI</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
                       <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">28</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">دسترسی نامحدود به مدل‌های هوش مصنوعی</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">اتصال به GPT، Claude، Gemini، Runway و Midjourney</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">دسترسی نامحدود به مدل‌های هوش مصنوعی</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">اتصال به GPT، Claude، Gemini، Runway و Midjourney</div>
                     </div>
                   </div>
                 </div>
@@ -466,19 +466,19 @@ export default function CoursePageClient() {
 
                 <div className="overflow-hidden rounded-xl border border-white/10">
                   <div className="grid grid-cols-12 text-sm bg-white/[0.04]">
-                    <div className="col-span-2 px-3 py-3 text-gray-300/90 w-[3cm] text-center">ماژول</div>
-                    <div className="col-span-3 px-3 py-3 text-gray-300/90">عنوان</div>
-                    <div className="col-span-7 px-3 py-3 text-gray-300/90">خروجی یادگیری</div>
+                    <div className="col-span-2 px-3 py-3 text-gray-300/90 md:w-[3cm] w-12 text-center">ماژول</div>
+                    <div className="col-span-5 px-3 py-3 text-gray-300/90">عنوان</div>
+                    <div className="col-span-5 px-3 py-3 text-gray-300/90">خروجی یادگیری</div>
                   </div>
                   <div className="divide-y divide-white/10">
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">26</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">طراحی پروژه واقعی برای بیزنس‌ها</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">اجرای کامل یک پروژه از ایده تا پیاده‌سازی عملی</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">26</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">طراحی پروژه واقعی برای بیزنس‌ها</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">اجرای کامل یک پروژه از ایده تا پیاده‌سازی عملی</div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">–</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">مثال‌ها</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">–</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">مثال‌ها</div>
                       <div className="col-span-5 px-3 py-3 text-gray-300/95 space-y-1">
                         <div>- ایجنت پشتیبانی مشتری برای سایت فروشگاهی</div>
                         <div>- ایجنت اتوماسیون تولید محتوا برای اینستاگرام</div>
@@ -488,9 +488,9 @@ export default function CoursePageClient() {
                       </div>
                     </div>
                     <div className="grid grid-cols-12 text-sm">
-                      <div className="col-span-2 px-3 py-3 text-gray-100 w-[3cm] text-center">–</div>
-                      <div className="col-span-3 px-3 py-3 text-gray-100">تحویل نهایی</div>
-                      <div className="col-span-7 px-3 py-3 text-gray-300/95">دانشجو پروژه واقعی خود را اجرا، تست و به بیزنس واقعی متصل می‌کند.</div>
+                      <div className="col-span-2 px-3 py-3 text-gray-100 md:w-[3cm] w-12 text-center">–</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-100">تحویل نهایی</div>
+                      <div className="col-span-5 px-3 py-3 text-gray-300/95">دانشجو پروژه واقعی خود را اجرا، تست و به بیزنس واقعی متصل می‌کند.</div>
                     </div>
                   </div>
                 </div>
