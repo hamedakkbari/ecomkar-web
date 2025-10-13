@@ -65,7 +65,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl">
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/logo.png?v=3" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        {/* Apple touch icon handled via metadata.icons; removing hard link to avoid conflicts */}
         <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="theme-color" content="#0B0F14" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
